@@ -4,7 +4,7 @@
 -- tables
 -- Table: company
 CREATE TABLE company (
-                         id int  NOT NULL,
+                         id serial  NOT NULL,
                          user_id int  NULL,
                          name varchar(255)  NOT NULL,
                          registrationcode varchar(10)  NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE material (
 
 -- Table: product
 CREATE TABLE product (
-                         id int  NOT NULL,
+                         id serial  NOT NULL,
                          company_id int  NOT NULL,
                          name varchar(255)  NOT NULL,
                          upc varchar(14)  NOT NULL,
