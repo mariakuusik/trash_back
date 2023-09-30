@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * DTO for {@link Product}
@@ -22,4 +23,5 @@ public class ProductResponse implements Serializable {
     @NotNull
     @Size(max = 14)
     private String productUpc;
+    private List <ProductComponentMaterialDto> componentsAndMaterials;
 }
