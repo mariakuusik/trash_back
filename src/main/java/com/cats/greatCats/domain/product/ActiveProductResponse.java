@@ -1,6 +1,7 @@
 package com.cats.greatCats.domain.product;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,12 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponse implements Serializable {
+public class ActiveProductResponse implements Serializable {
     private Integer productId;
-    private String productName;
-    private String productUpc;
     @NotNull
-    private Boolean productIsActive = false;
+    @Size(max = 255)
+    private String productName;
+    @NotNull
+    @Size(max = 14)
+    private String productUpc;
 }

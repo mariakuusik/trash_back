@@ -15,4 +15,17 @@ public class ProductService {
     public List<Product> findActiveProductsBy(Integer companyId) {
         return productRepository.findActiveProductsBy(companyId, Boolean.TRUE);
     }
+
+    public List<Product> findProductsBy(Integer companyId) {
+        return productRepository.findAllProductsBy(companyId);
+    }
+
+
+    public Product findProductBy(Integer id) {
+        return productRepository.findProductById(id);
+    }
+
+    public void saveProduct(Product product) {
+        productRepository.save(product);
+    }
 }

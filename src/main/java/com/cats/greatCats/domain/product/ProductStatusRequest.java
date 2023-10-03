@@ -13,10 +13,8 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponse implements Serializable {
+public class ProductStatusRequest implements Serializable {
     private Integer productId;
-    private String productName;
-    private String productUpc;
     @NotNull
     private Boolean productIsActive = false;
 }
