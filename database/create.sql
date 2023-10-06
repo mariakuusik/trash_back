@@ -1,14 +1,12 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-10-02 12:54:05.777
+-- Last modification date: 2023-10-05 11:53:23.956
 
 -- tables
 -- Table: bin
 CREATE TABLE bin (
                      id serial  NOT NULL,
-                     material_id int  NOT NULL,
-                     sorting_id int  NOT NULL,
                      name varchar(255)  NOT NULL,
-                     comments varchar(500)  NULL,
+                     comments varchar(50)  NULL,
                      CONSTRAINT bin_pk PRIMARY KEY (id)
 );
 
@@ -17,25 +15,18 @@ CREATE TABLE company (
                          id serial  NOT NULL,
                          user_id int  NULL,
                          name varchar(255)  NOT NULL,
-                         registrationcode varchar(10)  NOT NULL,
-                         is_active boolean  NOT NULL DEFAULT true,
+                         registration_code varchar(10)  NOT NULL,
+                         is_active boolean  NOT NULL,
                          CONSTRAINT company_pk PRIMARY KEY (id)
 );
 
 -- Table: component
 CREATE TABLE component (
                            id serial  NOT NULL,
+                           material_id int  NOT NULL,
+                           sorting_id int  NULL,
                            name varchar(255)  NOT NULL,
-                           product_id int  NOT NULL,
                            CONSTRAINT component_pk PRIMARY KEY (id)
-);
-
--- Table: component_material
-CREATE TABLE component_material (
-                                    id serial  NOT NULL,
-                                    material_id int  NOT NULL,
-                                    component_id int  NOT NULL,
-                                    CONSTRAINT component_material_pk PRIMARY KEY (id)
 );
 
 -- Table: image
@@ -58,13 +49,20 @@ CREATE TABLE product (
                          id serial  NOT NULL,
                          company_id int  NOT NULL,
                          image_id int  NULL,
+                         sorting_id int  NULL,
                          name varchar(255)  NOT NULL,
                          upc varchar(14)  NOT NULL,
-                         is_active boolean  NOT NULL DEFAULT true,
+                         is_active boolean  NOT NULL,
                          CONSTRAINT product_pk PRIMARY KEY (id)
 );
 
-CREATE INDEX product_upc_index on product (upc ASC);
+-- Table: product_component
+CREATE TABLE product_component (
+                                   id serial  NOT NULL,
+                                   product_id int  NOT NULL,
+                                   component_id int  NOT NULL,
+                                   CONSTRAINT product_component_pk PRIMARY KEY (id)
+);
 
 -- Table: role
 CREATE TABLE role (
@@ -76,7 +74,8 @@ CREATE TABLE role (
 -- Table: sorting
 CREATE TABLE sorting (
                          id serial  NOT NULL,
-                         instructions varchar(500)  NULL,
+                         instructions varchar(500)  NOT NULL,
+                         bin_id int  NOT NULL,
                          CONSTRAINT sorting_pk PRIMARY KEY (id)
 );
 
@@ -84,29 +83,14 @@ CREATE TABLE sorting (
 CREATE TABLE "user" (
                         id serial  NOT NULL,
                         role_id int  NOT NULL,
+                        name varchar(255)  NOT NULL,
                         username varchar(30)  NOT NULL,
                         password varchar(30)  NOT NULL,
-                        is_active boolean  NOT NULL DEFAULT true,
+                        is_active boolean  NOT NULL,
                         CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
 -- foreign keys
--- Reference: bin_material (table: bin)
-ALTER TABLE bin ADD CONSTRAINT bin_material
-    FOREIGN KEY (material_id)
-        REFERENCES material (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
--- Reference: bin_sorting (table: bin)
-ALTER TABLE bin ADD CONSTRAINT bin_sorting
-    FOREIGN KEY (sorting_id)
-        REFERENCES sorting (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
 -- Reference: company_user (table: company)
 ALTER TABLE company ADD CONSTRAINT company_user
     FOREIGN KEY (user_id)
@@ -115,26 +99,18 @@ ALTER TABLE company ADD CONSTRAINT company_user
             INITIALLY IMMEDIATE
 ;
 
--- Reference: component_material_component (table: component_material)
-ALTER TABLE component_material ADD CONSTRAINT component_material_component
-    FOREIGN KEY (component_id)
-        REFERENCES component (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
--- Reference: component_material_material (table: component_material)
-ALTER TABLE component_material ADD CONSTRAINT component_material_material
+-- Reference: component_material (table: component)
+ALTER TABLE component ADD CONSTRAINT component_material
     FOREIGN KEY (material_id)
         REFERENCES material (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
 
--- Reference: component_product (table: component)
-ALTER TABLE component ADD CONSTRAINT component_product
-    FOREIGN KEY (product_id)
-        REFERENCES product (id)
+-- Reference: component_sorting (table: component)
+ALTER TABLE component ADD CONSTRAINT component_sorting
+    FOREIGN KEY (sorting_id)
+        REFERENCES sorting (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
@@ -147,10 +123,42 @@ ALTER TABLE product ADD CONSTRAINT product_company
             INITIALLY IMMEDIATE
 ;
 
+-- Reference: product_component_component (table: product_component)
+ALTER TABLE product_component ADD CONSTRAINT product_component_component
+    FOREIGN KEY (component_id)
+        REFERENCES component (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: product_component_product (table: product_component)
+ALTER TABLE product_component ADD CONSTRAINT product_component_product
+    FOREIGN KEY (product_id)
+        REFERENCES product (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
 -- Reference: product_image (table: product)
 ALTER TABLE product ADD CONSTRAINT product_image
     FOREIGN KEY (image_id)
         REFERENCES image (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: product_sorting (table: product)
+ALTER TABLE product ADD CONSTRAINT product_sorting
+    FOREIGN KEY (sorting_id)
+        REFERENCES sorting (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: sorting_bin (table: sorting)
+ALTER TABLE sorting ADD CONSTRAINT sorting_bin
+    FOREIGN KEY (bin_id)
+        REFERENCES bin (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;

@@ -1,9 +1,7 @@
 package com.cats.greatCats.domain.product.component;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.cats.greatCats.domain.product.material.Material;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -22,5 +20,9 @@ public class Component {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "material_id") // Assuming this is the name of the foreign key column
+    private Material material;
 
 }
