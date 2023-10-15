@@ -75,7 +75,7 @@ public class ProductsService {
             if (componentOptional.isPresent()) {
                 Component component = componentOptional.get();
                 Material material = component.getMaterial();
-                if (material !=null){
+                if (material != null) {
                     MaterialResponse materialResponse = materialMapper.toMaterialResponse(material);
                     response.setMaterialResponse(materialResponse);
                 }

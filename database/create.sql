@@ -6,7 +6,7 @@
 CREATE TABLE bin (
                      id serial  NOT NULL,
                      name varchar(255)  NOT NULL,
-                     comments varchar(50)  NULL,
+                     comments varchar(500)  NULL,
                      CONSTRAINT bin_pk PRIMARY KEY (id)
 );
 

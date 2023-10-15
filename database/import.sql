@@ -16,16 +16,23 @@ INSERT INTO material (name, description) VALUES
                                              ('LDPE', 'Low-Density Polyethylene'),
                                              ('PP', 'Polypropylene'),
                                              ('PS', 'Polystyrene'),
-                                             ('PC', 'Other plastic'),
+                                             ('PC', 'Muu plastik'),
+                                             ('PAP20', 'Papp'),
+                                             ('PAP-21', 'Segapaber'),
+                                             ('PAP-22', 'Puhas paber'),
+                                             ('GL-70', 'Segaklaas'),
+                                             ('GL-71', 'Kirgas klaas'),
+                                             ('GL-72', 'Roheline klaas'),
+                                             ('BIO', 'Biolagunev'),
                                              ('T-PAK', 'Komposiitmaterjal');
 
 -- Insert data into 'bin' Table
 INSERT INTO bin (id, name, comments) VALUES
-                                     (DEFAULT, 'Plast- ja metallpakend, joogikartong', 'Comments for Bin 1'),
-                                     (DEFAULT, 'Papp- ja paberpakend', 'Comments for Bin 2'),
-                                     (DEFAULT, 'Klaaspakend', 'Comments for Bin 3'),
-                                     (DEFAULT, 'Biojäätmed', 'Comments for Bin 4'),
-                                     (DEFAULT, 'Olmejäätmed', 'Comments for Bin 5');
+                                     (DEFAULT, 'Plast- ja metallpakend, joogikartong', 'Loputa vajadusel, et ei määriks teisi pakendeid. Jäta korgid-kaaned peale'),
+                                     (DEFAULT, 'Paber ja papp', 'Voldi suuremad pakendid kokku või rebi tükkideks. Veendu, et materjal on puhas ja kuiv.'),
+                                     (DEFAULT, 'Klaaspakend', 'Loputa vajadusel, et ei määriks teisi pakendeid. Eemalda korgid või kaaned, sildid võivad jääda'),
+                                     (DEFAULT, 'Biojäätmed', 'Pane konteinerisse lahtiselt, paberkotis või komposteeruva kotiga'),
+                                     (DEFAULT, 'Olmejäätmed', 'test');
 
 -- Insert data into 'sorting' Table
 INSERT INTO sorting (instructions, bin_id) VALUES
@@ -43,16 +50,17 @@ INSERT INTO company (user_id, name, registration_code, is_active) VALUES
 
 -- Insert data into 'product' Table
 INSERT INTO product (company_id, image_id, name, upc, is_active) VALUES
-            (1, 1, 'Piim 2.5%', '12345678901234', true),
-            (1, NULL, 'Piim 4,5%', '56789012345671', false),
-            (1, NULL, 'Maasikajogurt', '56789012345672', false),
-            (1, NULL, 'Banaanijogurt šokolaaditükkidega', '56789012345673', false),
-            (1, NULL, 'C test', '56789012345674', true);
+            (1, 1, 'Piim 2.5%', '123456789012', true),
+            (1, NULL, 'Piim 4,5%', '123456789013', false),
+            (1, NULL, 'Maasikajogurt', '123456789014', false),
+            (1, NULL, 'Banaanijogurt šokolaaditükkidega', '123456789015', false),
+            (1, NULL, 'Mustikajogurt', '123456789016', true);
 
 -- Insert data into 'component' Table
 INSERT INTO component (material_id, sorting_id, name) VALUES
-            (3, NULL, 'Tetrapak'),
+            (15, NULL, 'Tetrapak'),
             (2, NULL, 'Kork'),
+            (3, NULL, 'Ümbris'),
             (3, NULL, 'Tops');
 
 -- Insert data into 'product_component' Table

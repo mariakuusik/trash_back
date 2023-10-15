@@ -34,7 +34,6 @@ public class ProductsController {
 
     public List<ActiveProductResponse> getActiveProducts(@RequestParam Integer companyId) {
         return productsService.getActiveProducts(companyId);
-
     }
 
     @GetMapping("")
@@ -46,7 +45,6 @@ public class ProductsController {
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public List<ProductResponse> getProducts(@RequestParam Integer companyId) {
         return productsService.getProducts(companyId);
-
     }
 
     @PatchMapping("/status")
