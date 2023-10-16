@@ -63,4 +63,11 @@ public class ProductsController {
     public ProductProfileResponse findProductComponentsAndMaterials(@RequestParam Integer productId) {
         return productsService.findProductComponentsAndMaterials(productId);
     }
+
+    @PutMapping("/profile")
+    @Operation(summary = "Changes productName and UPC")
+    public void updateProductInfo(@RequestBody ActiveProductResponse productResponse) {
+        productsService.updateProductInfo(productResponse);
+    }
+
 }

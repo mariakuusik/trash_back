@@ -84,4 +84,11 @@ public class ProductsService {
 
         }
     }
+
+    public void updateProductInfo(ActiveProductResponse productResponse) {
+        Product product = productService.findProductBy(productResponse.getProductId());
+        product.setName(productResponse.getProductName());
+        product.setUpc(productResponse.getProductUpc());
+        productService.saveProduct(product);
+    }
 }
