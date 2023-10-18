@@ -1,13 +1,17 @@
 package com.cats.greatCats.domain;
 
+import com.cats.greatCats.business.product.dto.ProductComponentResponse;
 import com.cats.greatCats.domain.product.component.Component;
+import com.cats.greatCats.domain.product.component.ProductComponent;
+import com.cats.greatCats.domain.product.component.ProductComponentMapper;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-05T22:33:59+0300",
+    date = "2023-10-17T14:11:15+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @org.springframework.stereotype.Component

@@ -1,5 +1,7 @@
 package com.cats.greatCats.domain.product;
 
+import com.cats.greatCats.business.product.dto.*;
+import com.cats.greatCats.domain.product.*;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -14,6 +16,7 @@ public interface ProductMapper {
     @Mapping(source = "name", target = "productName")
     @Mapping(source = "upc", target = "productUpc")
     ActiveProductResponse toActiveProductResponse(Product product);
+
     List<ActiveProductResponse> toActiveProductResponses(List<Product> products);
 
     //Productite tagastus KÕIK - nii aktiivsed kui mitteaktiivsed.
@@ -22,11 +25,28 @@ public interface ProductMapper {
     @Mapping(source = "upc", target = "productUpc")
     @Mapping(source = "isActive", target = "productIsActive")
     ProductResponse toProductResponse(Product product);
-    List<ProductResponse> toProductResponse(List<Product> products);
 
+    List<ProductResponse> toProductResponse(List<Product> products);
 
     @Mapping(source = "name", target = "productName")
     @Mapping(source = "upc", target = "productUpc")
     @Mapping(source = "isActive", target = "productIsActive")
     ProductProfileResponse toProductProfileResponse(Product product);
+
+
+    @Mapping(source = "productIsActive", target = "isActive")
+    @Mapping(source = "productUpc", target = "upc")
+    @Mapping(source = "productName", target = "name")
+    @Mapping(source = "companyId", target = "company.id")
+    Product toProductProfile(ProductDto productDto);
+
+    @Mapping(source = "productId", target = "id")
+    Product toEntity(NewProductResponse newProductResponse);
+
+    @Mapping(source = "id", target = "productId")
+    NewProductResponse toDto(Product product);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = "productId", target = "id")
+    Product partialUpdate(NewProductResponse newProductResponse, @MappingTarget Product product);
 }

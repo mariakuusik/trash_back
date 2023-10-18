@@ -28,4 +28,8 @@ public class ProductService {
     public void saveProduct(Product product) {
         productRepository.save(product);
     }
+
+    public Product findProductByUpc(String productUpc) {
+        return productRepository.findByUpc(productUpc);
+    }
 }

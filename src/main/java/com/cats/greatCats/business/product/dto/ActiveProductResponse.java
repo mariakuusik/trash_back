@@ -1,5 +1,6 @@
-package com.cats.greatCats.domain.product;
+package com.cats.greatCats.business.product.dto;
 
+import com.cats.greatCats.domain.product.Product;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

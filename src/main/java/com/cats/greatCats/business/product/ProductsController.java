@@ -1,11 +1,7 @@
 package com.cats.greatCats.business.product;
 
-import com.cats.greatCats.business.ProductsService;
-import com.cats.greatCats.domain.product.ActiveProductResponse;
-import com.cats.greatCats.domain.product.ProductProfileResponse;
-import com.cats.greatCats.domain.product.ProductResponse;
-import com.cats.greatCats.domain.product.ProductStatusRequest;
-import com.cats.greatCats.infrastructure.ApiError;
+import com.cats.greatCats.business.product.dto.*;
+import com.cats.greatCats.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -69,5 +65,16 @@ public class ProductsController {
     public void updateProductInfo(@RequestBody ActiveProductResponse productResponse) {
         productsService.updateProductInfo(productResponse);
     }
+
+    @PostMapping("/profile")
+    @Operation(summary = "Adds new product to the database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Product not added",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
+    public NewProductResponse addNewProduct(@RequestBody ProductDto productDto) {
+        return productsService.addNewProduct(productDto);
+    }
+
 
 }

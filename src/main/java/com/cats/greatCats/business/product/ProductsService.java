@@ -1,15 +1,23 @@
-package com.cats.greatCats.business;
+package com.cats.greatCats.business.product;
 
-import com.cats.greatCats.domain.ProductComponent;
-import com.cats.greatCats.domain.ProductComponentMapper;
-import com.cats.greatCats.domain.ProductComponentResponse;
+import com.cats.greatCats.Company;
+import com.cats.greatCats.business.product.dto.*;
+import com.cats.greatCats.domain.company.CompanyService;
+import com.cats.greatCats.business.product.component.ProductComponentService;
+import com.cats.greatCats.domain.product.component.ProductComponent;
+import com.cats.greatCats.domain.product.component.ProductComponentMapper;
+import com.cats.greatCats.business.product.dto.ProductComponentResponse;
 import com.cats.greatCats.domain.product.*;
 import com.cats.greatCats.domain.product.component.Component;
 import com.cats.greatCats.domain.product.component.ComponentRepository;
+import com.cats.greatCats.domain.product.image.*;
 import com.cats.greatCats.domain.product.material.Material;
 import com.cats.greatCats.domain.product.material.MaterialMapper;
 import com.cats.greatCats.domain.product.material.MaterialResponse;
+import com.cats.greatCats.infrastructure.exception.BusinessException;
+import com.cats.greatCats.util.ImageConverter;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +44,14 @@ public class ProductsService {
     @Resource
     private ComponentRepository componentRepository;
 
+    @Resource
+    private ImageMapper imageMapper;
+
+    @Resource
+    private CompanyService companyService;
+
+    @Resource
+    private ImageService imageService;
 
     public List<ActiveProductResponse> getActiveProducts(Integer companyId) {
         List<Product> products = productService.findActiveProductsBy(companyId);
@@ -90,5 +106,36 @@ public class ProductsService {
         product.setName(productResponse.getProductName());
         product.setUpc(productResponse.getProductUpc());
         productService.saveProduct(product);
+    }
+
+    public ImageDto findProductImage(Integer productId) {
+        Product product = productService.findProductBy(productId);
+        return imageMapper.toImageDto(product.getImage());
+    }
+
+    @Transactional
+    public NewProductResponse addNewProduct(ProductDto productDto) {
+
+        Product existingProductByUpc = productService.findProductByUpc(productDto.getProductUpc());
+        if (existingProductByUpc != null) {
+            throw new BusinessException("product with this UPC already exists", 111);
+        }
+        String imageData = productDto.getImageData();
+        Product productProfile = productMapper.toProductProfile(productDto);
+        Company company = companyService.getActiveCompanyBy(productDto.getCompanyId());
+
+        if (company.getId() != null && company.getIsActive().equals(true)) {
+            productProfile.setCompany(company);
+        }
+
+        if (imageData != null && !imageData.isEmpty()) {
+            Image image = ImageConverter.imageDataToImage(imageData);
+            imageService.saveImage(image);
+            productProfile.setImage(image);
+        }
+        productService.saveProduct(productProfile);
+        NewProductResponse newProductResponse = new NewProductResponse();
+        newProductResponse.setProductId(productProfile.getId());
+        return newProductResponse;
     }
 }

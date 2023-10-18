@@ -1,4 +1,4 @@
-package com.cats.greatCats.infrastructure;
+package com.cats.greatCats.infrastructure.error;
 
 import lombok.Data;
 @Data

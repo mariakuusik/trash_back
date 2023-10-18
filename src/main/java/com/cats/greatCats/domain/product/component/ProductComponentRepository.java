@@ -1,5 +1,6 @@
-package com.cats.greatCats.domain;
+package com.cats.greatCats.domain.product.component;
 
+import com.cats.greatCats.domain.product.component.ProductComponent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

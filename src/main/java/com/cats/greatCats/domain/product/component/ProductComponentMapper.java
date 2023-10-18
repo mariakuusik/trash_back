@@ -1,5 +1,6 @@
-package com.cats.greatCats.domain;
+package com.cats.greatCats.domain.product.component;
 
+import com.cats.greatCats.business.product.dto.ProductComponentResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -12,7 +13,6 @@ public interface ProductComponentMapper {
 
     @Mapping(source = "component.name", target = "componentName")
     @Mapping(source = "component.id", target = "componentId")
-
     ProductComponentResponse toProductComponentResponse(ProductComponent productComponent);
     List <ProductComponentResponse> toProductComponentResponses(List<ProductComponent> responseList);
 

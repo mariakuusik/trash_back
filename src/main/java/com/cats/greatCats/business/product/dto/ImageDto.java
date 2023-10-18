@@ -1,5 +1,6 @@
-package com.cats.greatCats.domain.product;
+package com.cats.greatCats.business.product.dto;
 
+import com.cats.greatCats.domain.product.image.Image;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +9,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * DTO for {@link Product}
+ * DTO for {@link Image}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductStatusRequest implements Serializable {
-    private Integer productId;
+public class ImageDto implements Serializable {
     @NotNull
-    private Boolean productIsActive = false;
+    private String imageData;
 }

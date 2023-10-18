@@ -1,5 +1,6 @@
-package com.cats.greatCats.domain;
+package com.cats.greatCats.business.product.dto;
 
+import com.cats.greatCats.domain.product.component.ProductComponent;
 import com.cats.greatCats.domain.product.material.MaterialResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;

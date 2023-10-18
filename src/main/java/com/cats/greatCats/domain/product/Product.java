@@ -1,6 +1,7 @@
 package com.cats.greatCats.domain.product;
 
-import com.cats.greatCats.domain.company.Company;
+import com.cats.greatCats.Company;
+import com.cats.greatCats.domain.product.image.Image;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Table(name = "product")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -34,5 +36,11 @@ public class Product {
     @NotNull
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
+
+
 
 }

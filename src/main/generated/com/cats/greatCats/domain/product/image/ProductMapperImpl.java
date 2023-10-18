@@ -1,13 +1,22 @@
-package com.cats.greatCats.domain.product;
+package com.cats.greatCats.domain.product.image;
 
+import com.cats.greatCats.Company;
+import com.cats.greatCats.business.product.dto.NewProductResponse;
+import com.cats.greatCats.business.product.dto.ActiveProductResponse;
+import com.cats.greatCats.domain.product.Product;
+import com.cats.greatCats.business.product.dto.ProductDto;
+import com.cats.greatCats.business.product.dto.ProductProfileResponse;
+import com.cats.greatCats.business.product.dto.ProductResponse;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+
+import com.cats.greatCats.domain.product.ProductMapper;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-16T15:35:40+0300",
+    date = "2023-10-17T17:29:13+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component
@@ -85,5 +94,72 @@ public class ProductMapperImpl implements ProductMapper {
         productProfileResponse.setProductIsActive( product.getIsActive() );
 
         return productProfileResponse;
+    }
+
+    @Override
+    public Product toProductProfile(ProductDto productDto) {
+        if ( productDto == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setCompany( productDtoToCompany( productDto ) );
+        product.setIsActive( productDto.getProductIsActive() );
+        product.setUpc( productDto.getProductUpc() );
+        product.setName( productDto.getProductName() );
+
+        return product;
+    }
+
+    @Override
+    public Product toEntity(NewProductResponse newProductResponse) {
+        if ( newProductResponse == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setId( newProductResponse.getProductId() );
+
+        return product;
+    }
+
+    @Override
+    public NewProductResponse toDto(Product product) {
+        if ( product == null ) {
+            return null;
+        }
+
+        NewProductResponse newProductResponse = new NewProductResponse();
+
+        newProductResponse.setProductId( product.getId() );
+
+        return newProductResponse;
+    }
+
+    @Override
+    public Product partialUpdate(NewProductResponse newProductResponse, Product product) {
+        if ( newProductResponse == null ) {
+            return product;
+        }
+
+        if ( newProductResponse.getProductId() != null ) {
+            product.setId( newProductResponse.getProductId() );
+        }
+
+        return product;
+    }
+
+    protected Company productDtoToCompany(ProductDto productDto) {
+        if ( productDto == null ) {
+            return null;
+        }
+
+        Company company = new Company();
+
+        company.setId( productDto.getCompanyId() );
+
+        return company;
     }
 }

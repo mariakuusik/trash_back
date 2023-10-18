@@ -1,4 +1,4 @@
-package com.cats.greatCats.domain.company;
+package com.cats.greatCats;
 
 import com.cats.greatCats.domain.user.User;
 import jakarta.persistence.*;
@@ -28,8 +28,8 @@ public class Company {
 
     @Size(max = 10)
     @NotNull
-    @Column(name = "registrationcode", nullable = false, length = 10)
-    private String registrationcode;
+    @Column(name = "registration_code", nullable = false, length = 10)
+    private String registrationCode;
 
     @NotNull
     @Column(name = "is_active", nullable = false)
