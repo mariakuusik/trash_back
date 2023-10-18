@@ -1,21 +1,25 @@
 package com.cats.greatCats.business.product;
 
 import com.cats.greatCats.Company;
+import com.cats.greatCats.business.product.component.ProductComponentService;
 import com.cats.greatCats.business.product.dto.*;
 import com.cats.greatCats.domain.company.CompanyService;
-import com.cats.greatCats.business.product.component.ProductComponentService;
-import com.cats.greatCats.domain.product.component.ProductComponent;
-import com.cats.greatCats.domain.product.component.ProductComponentMapper;
-import com.cats.greatCats.business.product.dto.ProductComponentResponse;
-import com.cats.greatCats.domain.product.*;
+import com.cats.greatCats.domain.product.Product;
+import com.cats.greatCats.domain.product.ProductMapper;
+import com.cats.greatCats.domain.product.ProductService;
 import com.cats.greatCats.domain.product.component.Component;
 import com.cats.greatCats.domain.product.component.ComponentRepository;
-import com.cats.greatCats.domain.product.image.*;
+import com.cats.greatCats.domain.product.component.ProductComponent;
+import com.cats.greatCats.domain.product.component.ProductComponentMapper;
+import com.cats.greatCats.domain.product.image.Image;
+import com.cats.greatCats.domain.product.image.ImageMapper;
+import com.cats.greatCats.domain.product.image.ImageService;
 import com.cats.greatCats.domain.product.material.Material;
 import com.cats.greatCats.domain.product.material.MaterialMapper;
-import com.cats.greatCats.domain.product.material.MaterialResponse;
+import com.cats.greatCats.business.product.dto.MaterialResponse;
 import com.cats.greatCats.infrastructure.exception.BusinessException;
 import com.cats.greatCats.util.ImageConverter;
+import com.cats.greatCats.validation.Error;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -52,6 +56,7 @@ public class ProductsService {
 
     @Resource
     private ImageService imageService;
+
 
     public List<ActiveProductResponse> getActiveProducts(Integer companyId) {
         List<Product> products = productService.findActiveProductsBy(companyId);
@@ -116,14 +121,12 @@ public class ProductsService {
     @Transactional
     public NewProductResponse addNewProduct(ProductDto productDto) {
 
-        Product existingProductByUpc = productService.findProductByUpc(productDto.getProductUpc());
-        if (existingProductByUpc != null) {
-            throw new BusinessException("product with this UPC already exists", 111);
-        }
+        validateUpcCodeIsAvailable(productDto);
+        
         String imageData = productDto.getImageData();
         Product productProfile = productMapper.toProductProfile(productDto);
-        Company company = companyService.getActiveCompanyBy(productDto.getCompanyId());
 
+        Company company = companyService.getActiveCompanyBy(productDto.getCompanyId());
         if (company.getId() != null && company.getIsActive().equals(true)) {
             productProfile.setCompany(company);
         }
@@ -137,5 +140,13 @@ public class ProductsService {
         NewProductResponse newProductResponse = new NewProductResponse();
         newProductResponse.setProductId(productProfile.getId());
         return newProductResponse;
+    }
+
+    private void validateUpcCodeIsAvailable(ProductDto productDto) {
+        Product existingProductByUpc = productService.findProductByUpc(productDto.getProductUpc());
+        if (existingProductByUpc != null) {
+            Error error = Error.UPC_UNAVAILABLE;
+            throw new BusinessException(error.getMessage(), error.getErrorCode());
+        }
     }
 }

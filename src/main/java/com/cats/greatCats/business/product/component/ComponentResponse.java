@@ -1,4 +1,4 @@
-package com.cats.greatCats.domain.product.material;
+package com.cats.greatCats.business.product.component;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,15 +9,14 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * DTO for {@link Material}
+ * DTO for {@link com.cats.greatCats.domain.product.component.Component}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MaterialResponse implements Serializable {
+public class ComponentResponse implements Serializable {
+    private Integer componentId;
     @NotNull
     @Size(max = 255)
-    private String materialName;
-    @Size(max = 500)
-    private String materialDescription;
+    private String componentName;
 }

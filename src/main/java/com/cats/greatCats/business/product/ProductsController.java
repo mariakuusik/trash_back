@@ -44,14 +44,14 @@ public class ProductsController {
     }
 
     @PatchMapping("/status")
-    @Operation(summary = "Muudab toote staatuse aktiivseks/mitteaktiivseks",
-            description = "Boolean productIsActive muutmine")
+    @Operation(summary = "Changes product to active/inactive",
+            description = "Changes Boolean productIsActive")
     public void changeStatus(@RequestBody ProductStatusRequest productStatusRequest) {
         productsService.updateProductStatus(productStatusRequest);
     }
 
     @GetMapping("/profile")
-    @Operation(summary = "Returns all components and materials associated with productId")
+    @Operation(summary = "Returns product profile with all associated components and materials")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "No components were found",
@@ -75,6 +75,5 @@ public class ProductsController {
     public NewProductResponse addNewProduct(@RequestBody ProductDto productDto) {
         return productsService.addNewProduct(productDto);
     }
-
 
 }

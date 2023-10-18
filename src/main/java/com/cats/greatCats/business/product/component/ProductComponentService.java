@@ -10,11 +10,17 @@ import java.util.List;
 @Service
 public class ProductComponentService {
 
+
     @Resource
     private ProductComponentRepository productComponentRepository;
 
 
     public List<ProductComponent> findComponentsBy(Integer productId) {
         return productComponentRepository.findComponentsBy(productId);
+    }
+
+
+    public void saveProductComponent(ProductComponent productComponent) {
+        productComponentRepository.save(productComponent);
     }
 }
