@@ -19,7 +19,7 @@ public class ComponentsController {
         componentsService.addComponentsAndMaterialsToProduct(productComponentDto);
     }
 
-    @GetMapping("/material")
+    @GetMapping("/by-material")
     @Operation(summary = "Returns components associated with materialId")
     public List<ComponentResponse> getComponentsByMaterial(@RequestParam Integer materialId){
         return componentsService.getComponentsBy(materialId);
