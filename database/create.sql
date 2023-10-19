@@ -44,6 +44,14 @@ CREATE TABLE material (
                           CONSTRAINT material_pk PRIMARY KEY (id)
 );
 
+-- Table: material_component
+CREATE TABLE material_component (
+                                    id serial NOT NULL,
+                                    material_id int NOT NULL,
+                                    component_id int NOT NULL,
+                                    CONSTRAINT material_component_pk PRIMARY KEY (id)
+);
+
 -- Table: product
 CREATE TABLE product (
                          id serial  NOT NULL,
@@ -74,8 +82,7 @@ CREATE TABLE role (
 -- Table: sorting
 CREATE TABLE sorting (
                          id serial  NOT NULL,
-                         instructions varchar(500)  NOT NULL,
-                         bin_id int  NOT NULL,
+                         instructions varchar(500) NULL,
                          CONSTRAINT sorting_pk PRIMARY KEY (id)
 );
 
@@ -99,13 +106,19 @@ ALTER TABLE company ADD CONSTRAINT company_user
             INITIALLY IMMEDIATE
 ;
 
--- Reference: component_material (table: component)
-ALTER TABLE component ADD CONSTRAINT component_material
+-- Reference: material_component_material (table: material_component)
+ALTER TABLE material_component ADD CONSTRAINT material_component_material
     FOREIGN KEY (material_id)
         REFERENCES material (id)
         NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
+            INITIALLY IMMEDIATE;
+
+-- Reference: material_component_component (table: material_component)
+ALTER TABLE material_component ADD CONSTRAINT material_component_component
+    FOREIGN KEY (component_id)
+        REFERENCES component (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE;
 
 -- Reference: component_sorting (table: component)
 ALTER TABLE component ADD CONSTRAINT component_sorting
@@ -154,19 +167,27 @@ ALTER TABLE product ADD CONSTRAINT product_sorting
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
-
--- Reference: sorting_bin (table: sorting)
-ALTER TABLE sorting ADD CONSTRAINT sorting_bin
+-- Reference: user_role (table: user)
+ALTER TABLE "user" ADD CONSTRAINT user_role
+    FOREIGN KEY (role_id)
+        REFERENCES role (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+-- Reference: product_bin (table: product)
+ALTER TABLE product ADD COLUMN bin_id int NULL;
+ALTER TABLE product ADD CONSTRAINT product_bin
     FOREIGN KEY (bin_id)
         REFERENCES bin (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
 
--- Reference: user_role (table: user)
-ALTER TABLE "user" ADD CONSTRAINT user_role
-    FOREIGN KEY (role_id)
-        REFERENCES role (id)
+-- Reference: component_bin (table: component)
+ALTER TABLE component ADD COLUMN bin_id int NULL;
+ALTER TABLE component ADD CONSTRAINT component_bin
+    FOREIGN KEY (bin_id)
+        REFERENCES bin (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;

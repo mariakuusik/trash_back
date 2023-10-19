@@ -1,12 +1,18 @@
 package com.cats.greatCats.domain.product;
 
+import com.cats.greatCats.Bin;
 import com.cats.greatCats.Company;
+import com.cats.greatCats.Sorting;
+import com.cats.greatCats.domain.product.component.ProductComponent;
 import com.cats.greatCats.domain.product.image.Image;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,6 +29,14 @@ public class Product {
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id")
+    private Image image;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sorting_id")
+    private Sorting sorting;
+
     @Size(max = 255)
     @NotNull
     @Column(name = "name", nullable = false)
@@ -38,9 +52,10 @@ public class Product {
     private Boolean isActive = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
-    private Image image;
+    @JoinColumn(name = "bin_id")
+    private Bin bin;
 
-
+    @OneToMany(mappedBy = "product")
+    private Set<ProductComponent> productComponents = new LinkedHashSet<>();
 
 }

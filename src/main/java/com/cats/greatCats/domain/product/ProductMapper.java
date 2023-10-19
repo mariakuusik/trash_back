@@ -1,8 +1,13 @@
 package com.cats.greatCats.domain.product;
 
-import com.cats.greatCats.business.product.dto.*;
-import com.cats.greatCats.domain.product.*;
-import org.mapstruct.*;
+import com.cats.greatCats.business.product.dto.ActiveProductResponse;
+import com.cats.greatCats.business.product.dto.ProductDto;
+import com.cats.greatCats.business.product.dto.ProductProfileResponse;
+import com.cats.greatCats.business.product.dto.ProductResponse;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
@@ -33,20 +38,13 @@ public interface ProductMapper {
     @Mapping(source = "isActive", target = "productIsActive")
     ProductProfileResponse toProductProfileResponse(Product product);
 
-
     @Mapping(source = "productIsActive", target = "isActive")
     @Mapping(source = "productUpc", target = "upc")
     @Mapping(source = "productName", target = "name")
     @Mapping(source = "companyId", target = "company.id")
     Product toProductProfile(ProductDto productDto);
 
-    @Mapping(source = "productId", target = "id")
-    Product toEntity(NewProductResponse newProductResponse);
 
-    @Mapping(source = "id", target = "productId")
-    NewProductResponse toDto(Product product);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(source = "productId", target = "id")
-    Product partialUpdate(NewProductResponse newProductResponse, @MappingTarget Product product);
+
 }

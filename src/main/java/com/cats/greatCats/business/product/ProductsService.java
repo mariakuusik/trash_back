@@ -1,10 +1,10 @@
 package com.cats.greatCats.business.product;
 
 import com.cats.greatCats.Company;
+import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.business.product.component.ProductComponentService;
 import com.cats.greatCats.business.product.dto.*;
 import com.cats.greatCats.domain.company.CompanyService;
-import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.product.ProductMapper;
 import com.cats.greatCats.domain.product.ProductService;
 import com.cats.greatCats.domain.product.component.Component;
@@ -14,9 +14,7 @@ import com.cats.greatCats.domain.product.component.ProductComponentMapper;
 import com.cats.greatCats.domain.product.image.Image;
 import com.cats.greatCats.domain.product.image.ImageMapper;
 import com.cats.greatCats.domain.product.image.ImageService;
-import com.cats.greatCats.domain.product.material.Material;
 import com.cats.greatCats.domain.product.material.MaterialMapper;
-import com.cats.greatCats.business.product.dto.MaterialResponse;
 import com.cats.greatCats.infrastructure.exception.BusinessException;
 import com.cats.greatCats.util.ImageConverter;
 import com.cats.greatCats.validation.Error;
@@ -95,11 +93,11 @@ public class ProductsService {
             Optional<Component> componentOptional = componentRepository.findById(componentId);
             if (componentOptional.isPresent()) {
                 Component component = componentOptional.get();
-                Material material = component.getMaterial();
-                if (material != null) {
-                    MaterialResponse materialResponse = materialMapper.toMaterialResponse(material);
-                    response.setMaterialResponse(materialResponse);
-                }
+//                Material material = component.getMaterial();
+//                if (material != null) {
+//                    MaterialResponse materialResponse = materialMapper.toMaterialResponse(material);
+//                    response.setMaterialResponse(materialResponse);
+//                }
 
             }
 

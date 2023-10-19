@@ -11,7 +11,6 @@ public interface ComponentMapper {
     @Mapping(source = "id", target = "componentId")
     @Mapping(source = "name", target = "componentName")
     ComponentResponse toComponentResponse(Component component);
-
-    List<ComponentResponse> toComponentResponses(List<Component>components);
+    List<ComponentResponse> toComponentResponses(List<Component> components);
 
 }

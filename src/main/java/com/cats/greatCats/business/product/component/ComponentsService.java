@@ -6,7 +6,6 @@ import com.cats.greatCats.domain.product.component.*;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -41,11 +40,11 @@ public class ComponentsService {
             productComponentService.saveProductComponent(productComponent);
         }
     }
-
-    public List<ComponentResponse> getComponentsBy(Integer materialId) {
-        List<Component> components = componentService.findComponentByMaterial(materialId);
-        return componentMapper.toComponentResponses(components);
-
-
-    }
+//See ei tööta, sest andmebaasi muudetud:
+//    public List<ComponentResponse> getComponentsBy(Integer materialId) {
+//        List<Component> components = componentService.findComponentByMaterial(materialId);
+//        return componentMapper.toComponentResponses(components);
+//
+//
+//    }
 }

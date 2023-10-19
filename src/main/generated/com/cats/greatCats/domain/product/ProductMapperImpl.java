@@ -2,7 +2,6 @@ package com.cats.greatCats.domain.product;
 
 import com.cats.greatCats.Company;
 import com.cats.greatCats.business.product.dto.ActiveProductResponse;
-import com.cats.greatCats.business.product.dto.NewProductResponse;
 import com.cats.greatCats.business.product.dto.ProductDto;
 import com.cats.greatCats.business.product.dto.ProductProfileResponse;
 import com.cats.greatCats.business.product.dto.ProductResponse;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-18T12:03:05+0300",
+    date = "2023-10-19T17:50:59+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component
@@ -105,45 +104,6 @@ public class ProductMapperImpl implements ProductMapper {
         product.setIsActive( productDto.getProductIsActive() );
         product.setUpc( productDto.getProductUpc() );
         product.setName( productDto.getProductName() );
-
-        return product;
-    }
-
-    @Override
-    public Product toEntity(NewProductResponse newProductResponse) {
-        if ( newProductResponse == null ) {
-            return null;
-        }
-
-        Product product = new Product();
-
-        product.setId( newProductResponse.getProductId() );
-
-        return product;
-    }
-
-    @Override
-    public NewProductResponse toDto(Product product) {
-        if ( product == null ) {
-            return null;
-        }
-
-        NewProductResponse newProductResponse = new NewProductResponse();
-
-        newProductResponse.setProductId( product.getId() );
-
-        return newProductResponse;
-    }
-
-    @Override
-    public Product partialUpdate(NewProductResponse newProductResponse, Product product) {
-        if ( newProductResponse == null ) {
-            return product;
-        }
-
-        if ( newProductResponse.getProductId() != null ) {
-            product.setId( newProductResponse.getProductId() );
-        }
 
         return product;
     }

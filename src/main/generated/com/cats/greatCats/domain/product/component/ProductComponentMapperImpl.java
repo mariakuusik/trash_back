@@ -1,16 +1,15 @@
 package com.cats.greatCats.domain.product.component;
 
+import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.business.product.component.ProductComponentDto;
 import com.cats.greatCats.business.product.dto.ProductComponentResponse;
-import com.cats.greatCats.domain.product.Product;
-import com.cats.greatCats.domain.product.material.Material;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-18T12:03:05+0300",
+    date = "2023-10-19T17:50:59+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @org.springframework.stereotype.Component
@@ -88,18 +87,6 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
         return id;
     }
 
-    protected Material productComponentDtoToMaterial(ProductComponentDto productComponentDto) {
-        if ( productComponentDto == null ) {
-            return null;
-        }
-
-        Material material = new Material();
-
-        material.setId( productComponentDto.getComponentMaterialId() );
-
-        return material;
-    }
-
     protected Component productComponentDtoToComponent(ProductComponentDto productComponentDto) {
         if ( productComponentDto == null ) {
             return null;
@@ -107,7 +94,6 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
 
         Component component = new Component();
 
-        component.setMaterial( productComponentDtoToMaterial( productComponentDto ) );
         component.setId( productComponentDto.getComponentId() );
 
         return component;
