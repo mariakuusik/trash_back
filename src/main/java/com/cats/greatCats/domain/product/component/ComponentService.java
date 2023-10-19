@@ -15,9 +15,13 @@ public class ComponentService {
     public Optional<Component> findComponentBy(Integer componentId) {
         return componentRepository.findById(componentId);
     }
+//See ei tööta, sest andmebaasi muudetud:
+//    public List<Component> findComponentByMaterial(Integer materialId) {
+//        return componentRepository.findByMaterial(materialId);
+//
+//    }
 
-    public List<Component> findComponentByMaterial(Integer materialId) {
-        return componentRepository.findByMaterial(materialId);
-
+    public List<Component> findComponentsByProduct(Integer id) {
+        return componentRepository.findByProductId(id);
     }
 }
