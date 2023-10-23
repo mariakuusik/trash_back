@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * DTO for {@link Product}
+ * DTO for {@link com.cats.greatCats.domain.product.Product}
  */
 @Data
 @AllArgsConstructor
@@ -26,4 +26,5 @@ public class ProductProfileResponse implements Serializable {
     private Boolean productIsActive = false;
 
     private List<ProductComponentResponse> componentsResponse;
+
 }

@@ -28,7 +28,7 @@ public class ComponentsService {
     private ComponentMapper componentMapper;
 
     public void addComponentsAndMaterialsToProduct(ProductComponentDto productComponentDto) {
-        productComponentMapper.toProductComponent(productComponentDto);
+        productComponentMapper.toProductComponent(productComponentDto)
 
         Product product = productService.findProductBy(productComponentDto.getProductId());
         Optional<Component> componentOptional = componentService.findComponentBy(productComponentDto.getComponentId());

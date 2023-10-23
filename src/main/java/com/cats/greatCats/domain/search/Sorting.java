@@ -1,4 +1,4 @@
-package com.cats.greatCats;
+package com.cats.greatCats.domain.search;
 
 import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.product.component.Component;

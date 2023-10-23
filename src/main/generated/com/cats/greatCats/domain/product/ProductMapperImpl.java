@@ -1,10 +1,10 @@
 package com.cats.greatCats.domain.product;
 
-import com.cats.greatCats.Company;
 import com.cats.greatCats.business.product.dto.ActiveProductResponse;
 import com.cats.greatCats.business.product.dto.ProductDto;
 import com.cats.greatCats.business.product.dto.ProductProfileResponse;
 import com.cats.greatCats.business.product.dto.ProductResponse;
+import com.cats.greatCats.domain.company.Company;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-19T17:50:59+0300",
+    date = "2023-10-23T10:44:37+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component

@@ -1,4 +1,4 @@
-package com.cats.greatCats;
+package com.cats.greatCats.domain.search;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.cats.greatCats;
+package com.cats.greatCats.domain.company;
 
 import com.cats.greatCats.domain.user.User;
 import jakarta.persistence.*;

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * DTO for {@link ProductComponent}
@@ -16,5 +17,5 @@ import java.io.Serializable;
 public class ProductComponentResponse implements Serializable {
     private Integer componentId;
     private String componentName;
-    private MaterialResponse materialResponse;
+    private List <MaterialComponentResponse> materialComponentResponse;
 }

@@ -30,6 +30,7 @@ public class SearchService {
 
     public void searchProductAndRecyclingInfo(String productUpc) {
         Product product = productService.findProductByUpc(productUpc);
+        //TODO: ProductComponentist DTO, mi
 
     }
 }

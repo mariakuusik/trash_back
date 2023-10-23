@@ -1,10 +1,12 @@
 package com.cats.greatCats.business.product;
 
-import com.cats.greatCats.Company;
-import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.business.product.component.ProductComponentService;
 import com.cats.greatCats.business.product.dto.*;
+import com.cats.greatCats.domain.company.Company;
 import com.cats.greatCats.domain.company.CompanyService;
+import com.cats.greatCats.domain.material.MaterialComponent;
+import com.cats.greatCats.domain.material.MaterialComponentMapper;
+import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.product.ProductMapper;
 import com.cats.greatCats.domain.product.ProductService;
 import com.cats.greatCats.domain.product.component.Component;
@@ -22,8 +24,10 @@ import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProductsService {
@@ -55,6 +59,9 @@ public class ProductsService {
     @Resource
     private ImageService imageService;
 
+    @Resource
+    private MaterialComponentMapper materialComponentMapper;
+
 
     public List<ActiveProductResponse> getActiveProducts(Integer companyId) {
         List<Product> products = productService.findActiveProductsBy(companyId);
@@ -76,32 +83,27 @@ public class ProductsService {
     public ProductProfileResponse findProductComponentsAndMaterials(Integer productId) {
         Product product = productService.findProductBy(productId);
         ProductProfileResponse productProfileResponse = productMapper.toProductProfileResponse(product);
-        addComponentsToProduct(productId, productProfileResponse);
-        return productProfileResponse;
-    }
 
-    private void addComponentsToProduct(Integer productId, ProductProfileResponse productProfileResponse) {
         List<ProductComponent> components = productComponentService.findComponentsBy(productId);
         List<ProductComponentResponse> productComponentResponses = productComponentMapper.toProductComponentResponses(components);
-        productProfileResponse.setComponentsResponse(productComponentResponses);
-        findAndAddMaterialsToComponents(productComponentResponses);
-    }
 
-    private void findAndAddMaterialsToComponents(List<ProductComponentResponse> productComponentResponses) {
-        for (ProductComponentResponse response : productComponentResponses) {
-            Integer componentId = response.getComponentId();
+        productProfileResponse.setComponentsResponse(productComponentResponses);
+
+        for (ProductComponentResponse componentResponse : productComponentResponses) {
+            Integer componentId = componentResponse.getComponentId();
             Optional<Component> componentOptional = componentRepository.findById(componentId);
             if (componentOptional.isPresent()) {
                 Component component = componentOptional.get();
-//                Material material = component.getMaterial();
-//                if (material != null) {
-//                    MaterialResponse materialResponse = materialMapper.toMaterialResponse(material);
-//                    response.setMaterialResponse(materialResponse);
-//                }
+                Set<MaterialComponent> materialComponents = component.getMaterialComponents();
+                List<MaterialComponent> materialComponentList = new ArrayList<>(materialComponents); // Convert Set to List
 
+                List<MaterialComponentResponse> materialComponentResponseList = materialComponentMapper.toMaterialComponentResponses(materialComponentList);
+                componentResponse.setMaterialComponentResponse(materialComponentResponseList);
             }
 
+
         }
+        return productProfileResponse;
     }
 
     public void updateProductInfo(ActiveProductResponse productResponse) {
@@ -120,7 +122,7 @@ public class ProductsService {
     public NewProductResponse addNewProduct(ProductDto productDto) {
 
         validateUpcCodeIsAvailable(productDto);
-        
+
         String imageData = productDto.getImageData();
         Product productProfile = productMapper.toProductProfile(productDto);
 

@@ -1,4 +1,4 @@
-package com.cats.greatCats;
+package com.cats.greatCats.domain.material;
 
 import com.cats.greatCats.domain.product.component.Component;
 import com.cats.greatCats.domain.product.material.Material;

@@ -63,13 +63,13 @@ VALUES (1, 1, 1, NULL, 'Milk 2.5%', '123456789012', true),
        (1, NULL, NULL, NULL, 'Blueberry Icecream', '123456789016', true);
 
 -- Insert data into 'component' Table
-INSERT INTO component (material_id, sorting_id, name)
-VALUES (15, NULL, 'Tetrapak'),
-       (1, NULL, 'Lid'),
-       (2, NULL, 'Lid'),
-       (8, NULL, 'Wrapper'),
-       (3, NULL, 'Product Container'),
-       (16, 2, 'Container Protective Top');
+INSERT INTO component (sorting_id, name)
+VALUES (NULL, 'Tetrapak'),
+       (NULL, 'Lid'),
+       (NULL, 'Lid'),
+       (NULL, 'Wrapper'),
+       (NULL, 'Product Container'),
+       (2, 'Container Protective Top');
 
 -- Insert data into 'product_component' Table
 INSERT INTO product_component (product_id, component_id)

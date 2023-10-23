@@ -23,7 +23,6 @@ CREATE TABLE company (
 -- Table: component
 CREATE TABLE component (
                            id serial  NOT NULL,
-                           material_id int  NOT NULL,
                            sorting_id int  NULL,
                            name varchar(255)  NOT NULL,
                            CONSTRAINT component_pk PRIMARY KEY (id)

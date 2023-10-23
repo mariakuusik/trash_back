@@ -1,15 +1,17 @@
 package com.cats.greatCats.domain.product.component;
 
-import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.business.product.component.ProductComponentDto;
 import com.cats.greatCats.business.product.dto.ProductComponentResponse;
+import com.cats.greatCats.business.search.dto.SearchResultsByUpc;
+import com.cats.greatCats.domain.product.Product;
+import com.cats.greatCats.domain.search.Bin;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-19T17:50:59+0300",
+    date = "2023-10-23T10:44:37+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @org.springframework.stereotype.Component
@@ -55,6 +57,25 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
         productComponent.setProduct( productComponentDtoToProduct( productComponentDto ) );
 
         return productComponent;
+    }
+
+    @Override
+    public SearchResultsByUpc toSearchResultsByUpc(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+
+        SearchResultsByUpc searchResultsByUpc = new SearchResultsByUpc();
+
+        searchResultsByUpc.setProductName( productComponentProductName( productComponent ) );
+        searchResultsByUpc.setComponentId( productComponentComponentId( productComponent ) );
+        searchResultsByUpc.setComponentName( productComponentComponentName( productComponent ) );
+        searchResultsByUpc.setProductBinName( productComponentProductBinName( productComponent ) );
+        searchResultsByUpc.setProductBinComments( productComponentProductBinComments( productComponent ) );
+        searchResultsByUpc.setComponentBinName( productComponentComponentBinName( productComponent ) );
+        searchResultsByUpc.setComponentBinComments( productComponentComponentBinComments( productComponent ) );
+
+        return searchResultsByUpc;
     }
 
     private String productComponentComponentName(ProductComponent productComponent) {
@@ -109,5 +130,96 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
         product.setId( productComponentDto.getProductId() );
 
         return product;
+    }
+
+    private String productComponentProductName(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+        Product product = productComponent.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        String name = product.getName();
+        if ( name == null ) {
+            return null;
+        }
+        return name;
+    }
+
+    private String productComponentProductBinName(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+        Product product = productComponent.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        Bin bin = product.getBin();
+        if ( bin == null ) {
+            return null;
+        }
+        String name = bin.getName();
+        if ( name == null ) {
+            return null;
+        }
+        return name;
+    }
+
+    private String productComponentProductBinComments(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+        Product product = productComponent.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        Bin bin = product.getBin();
+        if ( bin == null ) {
+            return null;
+        }
+        String comments = bin.getComments();
+        if ( comments == null ) {
+            return null;
+        }
+        return comments;
+    }
+
+    private String productComponentComponentBinName(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+        Component component = productComponent.getComponent();
+        if ( component == null ) {
+            return null;
+        }
+        Bin bin = component.getBin();
+        if ( bin == null ) {
+            return null;
+        }
+        String name = bin.getName();
+        if ( name == null ) {
+            return null;
+        }
+        return name;
+    }
+
+    private String productComponentComponentBinComments(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+        Component component = productComponent.getComponent();
+        if ( component == null ) {
+            return null;
+        }
+        Bin bin = component.getBin();
+        if ( bin == null ) {
+            return null;
+        }
+        String comments = bin.getComments();
+        if ( comments == null ) {
+            return null;
+        }
+        return comments;
     }
 }

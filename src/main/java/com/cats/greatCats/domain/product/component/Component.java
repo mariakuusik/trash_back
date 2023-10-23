@@ -1,8 +1,8 @@
 package com.cats.greatCats.domain.product.component;
 
-import com.cats.greatCats.Bin;
-import com.cats.greatCats.MaterialComponent;
-import com.cats.greatCats.Sorting;
+import com.cats.greatCats.domain.search.Bin;
+import com.cats.greatCats.domain.material.MaterialComponent;
+import com.cats.greatCats.domain.search.Sorting;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,10 +21,6 @@ public class Component {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    @NotNull
-    @Column(name = "material_id", nullable = false)
-    private Integer materialId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sorting_id")
