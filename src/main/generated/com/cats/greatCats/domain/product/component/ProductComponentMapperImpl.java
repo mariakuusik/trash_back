@@ -1,6 +1,6 @@
 package com.cats.greatCats.domain.product.component;
 
-import com.cats.greatCats.business.product.component.ProductComponentDto;
+import com.cats.greatCats.business.product.dto.ProductComponentDto;
 import com.cats.greatCats.business.product.dto.ProductComponentResponse;
 import com.cats.greatCats.business.search.dto.SearchResultsByUpc;
 import com.cats.greatCats.domain.product.Product;
@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-23T10:44:37+0300",
+    date = "2023-10-23T17:13:45+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @org.springframework.stereotype.Component
@@ -46,20 +46,6 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
     }
 
     @Override
-    public ProductComponent toProductComponent(ProductComponentDto productComponentDto) {
-        if ( productComponentDto == null ) {
-            return null;
-        }
-
-        ProductComponent productComponent = new ProductComponent();
-
-        productComponent.setComponent( productComponentDtoToComponent( productComponentDto ) );
-        productComponent.setProduct( productComponentDtoToProduct( productComponentDto ) );
-
-        return productComponent;
-    }
-
-    @Override
     public SearchResultsByUpc toSearchResultsByUpc(ProductComponent productComponent) {
         if ( productComponent == null ) {
             return null;
@@ -76,6 +62,20 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
         searchResultsByUpc.setComponentBinComments( productComponentComponentBinComments( productComponent ) );
 
         return searchResultsByUpc;
+    }
+
+    @Override
+    public ProductComponent toProductComponent(ProductComponentDto productComponentDto) {
+        if ( productComponentDto == null ) {
+            return null;
+        }
+
+        ProductComponent productComponent = new ProductComponent();
+
+        productComponent.setComponent( productComponentDtoToComponent( productComponentDto ) );
+        productComponent.setProduct( productComponentDtoToProduct( productComponentDto ) );
+
+        return productComponent;
     }
 
     private String productComponentComponentName(ProductComponent productComponent) {
@@ -106,30 +106,6 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
             return null;
         }
         return id;
-    }
-
-    protected Component productComponentDtoToComponent(ProductComponentDto productComponentDto) {
-        if ( productComponentDto == null ) {
-            return null;
-        }
-
-        Component component = new Component();
-
-        component.setId( productComponentDto.getComponentId() );
-
-        return component;
-    }
-
-    protected Product productComponentDtoToProduct(ProductComponentDto productComponentDto) {
-        if ( productComponentDto == null ) {
-            return null;
-        }
-
-        Product product = new Product();
-
-        product.setId( productComponentDto.getProductId() );
-
-        return product;
     }
 
     private String productComponentProductName(ProductComponent productComponent) {
@@ -221,5 +197,29 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
             return null;
         }
         return comments;
+    }
+
+    protected Component productComponentDtoToComponent(ProductComponentDto productComponentDto) {
+        if ( productComponentDto == null ) {
+            return null;
+        }
+
+        Component component = new Component();
+
+        component.setId( productComponentDto.getComponentId() );
+
+        return component;
+    }
+
+    protected Product productComponentDtoToProduct(ProductComponentDto productComponentDto) {
+        if ( productComponentDto == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setId( productComponentDto.getProductId() );
+
+        return product;
     }
 }

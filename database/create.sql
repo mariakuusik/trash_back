@@ -3,12 +3,6 @@
 
 -- tables
 -- Table: bin
-CREATE TABLE bin (
-                     id serial  NOT NULL,
-                     name varchar(255)  NOT NULL,
-                     comments varchar(500)  NULL,
-                     CONSTRAINT bin_pk PRIMARY KEY (id)
-);
 
 -- Table: company
 CREATE TABLE company (
@@ -51,12 +45,27 @@ CREATE TABLE material_component (
                                     CONSTRAINT material_component_pk PRIMARY KEY (id)
 );
 
+CREATE TABLE bin (
+                     id serial  NOT NULL,
+                     name varchar(255)  NOT NULL,
+                     comments varchar(500)  NULL,
+                     CONSTRAINT bin_pk PRIMARY KEY (id)
+);
+
+-- Table: sorting
+CREATE TABLE sorting (
+                         id serial  NOT NULL,
+                         instructions varchar(500) NULL,
+                         CONSTRAINT sorting_pk PRIMARY KEY (id)
+);
+
 -- Table: product
 CREATE TABLE product (
                          id serial  NOT NULL,
                          company_id int  NOT NULL,
                          image_id int  NULL,
                          sorting_id int  NULL,
+                         bin_id int NULL,
                          name varchar(255)  NOT NULL,
                          upc varchar(14)  NOT NULL,
                          is_active boolean  NOT NULL,
@@ -76,13 +85,6 @@ CREATE TABLE role (
                       id serial  NOT NULL,
                       name varchar(128)  NOT NULL,
                       CONSTRAINT role_pk PRIMARY KEY (id)
-);
-
--- Table: sorting
-CREATE TABLE sorting (
-                         id serial  NOT NULL,
-                         instructions varchar(500) NULL,
-                         CONSTRAINT sorting_pk PRIMARY KEY (id)
 );
 
 -- Table: user
@@ -174,7 +176,6 @@ ALTER TABLE "user" ADD CONSTRAINT user_role
             INITIALLY IMMEDIATE
 ;
 -- Reference: product_bin (table: product)
-ALTER TABLE product ADD COLUMN bin_id int NULL;
 ALTER TABLE product ADD CONSTRAINT product_bin
     FOREIGN KEY (bin_id)
         REFERENCES bin (id)

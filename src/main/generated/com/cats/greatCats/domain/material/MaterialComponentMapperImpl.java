@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-23T12:01:33+0300",
+    date = "2023-10-23T16:23:09+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component
@@ -43,6 +43,33 @@ public class MaterialComponentMapperImpl implements MaterialComponentMapper {
         return list;
     }
 
+    @Override
+    public MaterialComponent toMaterialComponent(MaterialComponentRequest materialComponentRequest) {
+        if ( materialComponentRequest == null ) {
+            return null;
+        }
+
+        MaterialComponent materialComponent = new MaterialComponent();
+
+        materialComponent.setMaterial( materialComponentRequestToMaterial( materialComponentRequest ) );
+
+        return materialComponent;
+    }
+
+    @Override
+    public List<MaterialComponent> tomaterialComponents(List<MaterialComponentRequest> materialComponentRequests) {
+        if ( materialComponentRequests == null ) {
+            return null;
+        }
+
+        List<MaterialComponent> list = new ArrayList<MaterialComponent>( materialComponentRequests.size() );
+        for ( MaterialComponentRequest materialComponentRequest : materialComponentRequests ) {
+            list.add( toMaterialComponent( materialComponentRequest ) );
+        }
+
+        return list;
+    }
+
     private String materialComponentMaterialName(MaterialComponent materialComponent) {
         if ( materialComponent == null ) {
             return null;
@@ -71,5 +98,17 @@ public class MaterialComponentMapperImpl implements MaterialComponentMapper {
             return null;
         }
         return description;
+    }
+
+    protected Material materialComponentRequestToMaterial(MaterialComponentRequest materialComponentRequest) {
+        if ( materialComponentRequest == null ) {
+            return null;
+        }
+
+        Material material = new Material();
+
+        material.setId( materialComponentRequest.getMaterialId() );
+
+        return material;
     }
 }

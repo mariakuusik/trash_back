@@ -26,4 +26,6 @@ public class ProductDto implements Serializable {
     @NotNull
     private Boolean productIsActive = false;
     private String imageData;
+    private Integer binId;
+    private Integer sortingId;
 }

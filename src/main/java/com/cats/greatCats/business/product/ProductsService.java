@@ -1,5 +1,6 @@
 package com.cats.greatCats.business.product;
 
+import com.cats.greatCats.Sorting;
 import com.cats.greatCats.business.product.component.ProductComponentService;
 import com.cats.greatCats.business.product.dto.*;
 import com.cats.greatCats.domain.company.Company;
@@ -17,6 +18,7 @@ import com.cats.greatCats.domain.product.image.Image;
 import com.cats.greatCats.domain.product.image.ImageMapper;
 import com.cats.greatCats.domain.product.image.ImageService;
 import com.cats.greatCats.domain.product.material.MaterialMapper;
+import com.cats.greatCats.domain.search.Bin;
 import com.cats.greatCats.infrastructure.exception.BusinessException;
 import com.cats.greatCats.util.ImageConverter;
 import com.cats.greatCats.validation.Error;
@@ -62,11 +64,16 @@ public class ProductsService {
     @Resource
     private MaterialComponentMapper materialComponentMapper;
 
+    @Resource
+    private BinService binService;
+
+    @Resource
+    private SortingService sortingService;
+
 
     public List<ActiveProductResponse> getActiveProducts(Integer companyId) {
         List<Product> products = productService.findActiveProductsBy(companyId);
-        List<ActiveProductResponse> activeProductRespons = productMapper.toActiveProductResponses(products);
-        return activeProductRespons;
+        return productMapper.toActiveProductResponses(products);
     }
 
     public List<ProductResponse> getProducts(Integer companyId) {
@@ -130,16 +137,36 @@ public class ProductsService {
         if (company.getId() != null && company.getIsActive().equals(true)) {
             productProfile.setCompany(company);
         }
+        AddImageIdIfPresent(imageData, productProfile);
+        addBinIdIfPresent(productDto, productProfile);
+        addSortingIdIfPresent(productDto, productProfile);
 
+        productService.saveProduct(productProfile);
+        NewProductResponse newProductResponse = new NewProductResponse();
+        newProductResponse.setProductId(productProfile.getId());
+        return newProductResponse;
+    }
+
+    private void AddImageIdIfPresent(String imageData, Product productProfile) {
         if (imageData != null && !imageData.isEmpty()) {
             Image image = ImageConverter.imageDataToImage(imageData);
             imageService.saveImage(image);
             productProfile.setImage(image);
         }
-        productService.saveProduct(productProfile);
-        NewProductResponse newProductResponse = new NewProductResponse();
-        newProductResponse.setProductId(productProfile.getId());
-        return newProductResponse;
+    }
+
+    private void addSortingIdIfPresent(ProductDto productDto, Product productProfile) {
+        if (productDto.getSortingId() != null) {
+            Optional<Sorting> sortingOptional = sortingService.getSortingId(productDto.getSortingId());
+            sortingOptional.ifPresent(productProfile::setSorting);
+        }
+    }
+
+    private void addBinIdIfPresent(ProductDto productDto, Product productProfile) {
+        if (productDto.getBinId() != null) {
+            Optional<Bin> binOptional = binService.getBinId(productDto.getBinId());
+            binOptional.ifPresent(productProfile::setBin);
+        }
     }
 
     private void validateUpcCodeIsAvailable(ProductDto productDto) {

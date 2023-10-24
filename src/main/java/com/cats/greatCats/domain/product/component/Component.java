@@ -1,8 +1,8 @@
 package com.cats.greatCats.domain.product.component;
 
-import com.cats.greatCats.domain.search.Bin;
+import com.cats.greatCats.Sorting;
 import com.cats.greatCats.domain.material.MaterialComponent;
-import com.cats.greatCats.domain.search.Sorting;
+import com.cats.greatCats.domain.search.Bin;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

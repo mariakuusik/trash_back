@@ -13,6 +13,7 @@ import lombok.Setter;
 @Table(name = "material_component")
 public class MaterialComponent {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
