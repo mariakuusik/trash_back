@@ -5,6 +5,7 @@ import com.cats.greatCats.domain.search.BinRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,5 +17,9 @@ public class BinService {
 
     public Optional<Bin> getBinId(Integer binId) {
         return binRepository.findById(binId);
+    }
+
+    public List<Bin> getAllBins() {
+        return binRepository.findAll();
     }
 }

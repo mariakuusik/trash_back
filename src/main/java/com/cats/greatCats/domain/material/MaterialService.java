@@ -16,8 +16,7 @@ public class MaterialService {
 
 
     public Optional<Material> findMaterialBy(Integer materialId) {
-        Optional<Material> material = materialRepository.findById(materialId);
-        return material;
+        return materialRepository.findById(materialId);
     }
 
     public List<Material> getAllMaterials() {

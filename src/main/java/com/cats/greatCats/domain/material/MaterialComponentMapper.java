@@ -17,7 +17,7 @@ public interface MaterialComponentMapper {
 
     @Mapping(source = "materialId", target = "material.id")
     MaterialComponent toMaterialComponent(MaterialComponentRequest materialComponentRequest);
-    List<MaterialComponent> tomaterialComponents (List<MaterialComponentRequest> materialComponentRequests);
+    List<MaterialComponent> toMaterialComponents(List<MaterialComponentRequest> materialComponentRequests);
 
 
 }

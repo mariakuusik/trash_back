@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-23T16:23:09+0300",
+    date = "2023-10-24T15:45:28+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component
@@ -57,7 +57,7 @@ public class MaterialComponentMapperImpl implements MaterialComponentMapper {
     }
 
     @Override
-    public List<MaterialComponent> tomaterialComponents(List<MaterialComponentRequest> materialComponentRequests) {
+    public List<MaterialComponent> toMaterialComponents(List<MaterialComponentRequest> materialComponentRequests) {
         if ( materialComponentRequests == null ) {
             return null;
         }

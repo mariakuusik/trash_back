@@ -23,4 +23,8 @@ public class ProductComponentService {
     public void saveProductComponent(ProductComponent productComponent) {
         productComponentRepository.save(productComponent);
     }
+
+    public ProductComponent findProductComponentBy(Integer productId, Integer componentId) {
+        return productComponentRepository.findProductComponentBy(productId, componentId);
+    }
 }

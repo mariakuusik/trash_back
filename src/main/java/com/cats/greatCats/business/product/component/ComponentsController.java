@@ -16,8 +16,8 @@ public class ComponentsController {
     private ComponentsService componentsService;
 
     @PostMapping("/component")
-    @Operation(summary = "Adds one component to product")
-    public void addComponentsAndMaterialsToProduct(@RequestBody ProductComponentDto productComponentDto){
-        componentsService.addComponentsAndMaterialsToProduct(productComponentDto);
+    @Operation(summary = "Adds one component to product and material(s) to component")
+    public void addComponentAndMaterialsToProduct(@RequestBody ProductComponentDto productComponentDto){
+        componentsService.addComponentAndMaterialsToProduct(productComponentDto);
     }
 }

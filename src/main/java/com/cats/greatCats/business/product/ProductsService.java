@@ -161,6 +161,7 @@ public class ProductsService {
             sortingOptional.ifPresent(productProfile::setSorting);
         }
     }
+    //TODO: kas sorting peaks olema nii, et lisad ise mingi teksti (ja siis andmebaasi uus rida).
 
     private void addBinIdIfPresent(ProductDto productDto, Product productProfile) {
         if (productDto.getBinId() != null) {
