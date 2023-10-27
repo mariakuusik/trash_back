@@ -1,6 +1,7 @@
 package com.cats.greatCats.domain.material;
 
 import com.cats.greatCats.business.product.dto.MaterialComponentResponse;
+import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.product.material.Material;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-24T15:45:28+0300",
+    date = "2023-10-26T12:28:58+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component
@@ -25,6 +26,7 @@ public class MaterialComponentMapperImpl implements MaterialComponentMapper {
 
         materialComponentResponse.setMaterialName( materialComponentMaterialName( materialComponent ) );
         materialComponentResponse.setMaterialDescription( materialComponentMaterialDescription( materialComponent ) );
+        materialComponentResponse.setProductId( materialComponentProductId( materialComponent ) );
 
         return materialComponentResponse;
     }
@@ -52,6 +54,7 @@ public class MaterialComponentMapperImpl implements MaterialComponentMapper {
         MaterialComponent materialComponent = new MaterialComponent();
 
         materialComponent.setMaterial( materialComponentRequestToMaterial( materialComponentRequest ) );
+        materialComponent.setProduct( materialComponentRequestToProduct( materialComponentRequest ) );
 
         return materialComponent;
     }
@@ -100,6 +103,21 @@ public class MaterialComponentMapperImpl implements MaterialComponentMapper {
         return description;
     }
 
+    private Integer materialComponentProductId(MaterialComponent materialComponent) {
+        if ( materialComponent == null ) {
+            return null;
+        }
+        Product product = materialComponent.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        Integer id = product.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
+    }
+
     protected Material materialComponentRequestToMaterial(MaterialComponentRequest materialComponentRequest) {
         if ( materialComponentRequest == null ) {
             return null;
@@ -110,5 +128,17 @@ public class MaterialComponentMapperImpl implements MaterialComponentMapper {
         material.setId( materialComponentRequest.getMaterialId() );
 
         return material;
+    }
+
+    protected Product materialComponentRequestToProduct(MaterialComponentRequest materialComponentRequest) {
+        if ( materialComponentRequest == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setId( materialComponentRequest.getProductId() );
+
+        return product;
     }
 }

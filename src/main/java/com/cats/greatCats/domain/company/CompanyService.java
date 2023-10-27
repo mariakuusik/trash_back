@@ -13,4 +13,8 @@ public class CompanyService {
     public Company getActiveCompanyBy(Integer companyId) {
         return companyRepository.findActiveCompanyBy(companyId, true);
     }
+
+    public void getActiveCompanyBy(String productUpc) {
+
+    }
 }

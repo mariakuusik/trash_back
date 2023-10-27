@@ -29,7 +29,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public Product findProductByUpc(String productUpc) {
-        return productRepository.findByUpc(productUpc);
+    public Product findActiveProductByUpc(String productUpc) {
+        return productRepository.findActiveProductBy(productUpc, true);
     }
 }

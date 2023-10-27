@@ -1,5 +1,6 @@
 package com.cats.greatCats.domain.material;
 
+import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.product.component.Component;
 import com.cats.greatCats.domain.product.material.Material;
 import jakarta.persistence.*;
@@ -27,4 +28,8 @@ public class MaterialComponent {
     @JoinColumn(name = "material_id", nullable = false)
     private Material material;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 }

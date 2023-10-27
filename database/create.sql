@@ -121,6 +121,16 @@ ALTER TABLE material_component ADD CONSTRAINT material_component_component
         NOT DEFERRABLE
             INITIALLY IMMEDIATE;
 
+ALTER TABLE material_component
+    ADD COLUMN product_id int NULL;
+
+ALTER TABLE material_component
+    ADD CONSTRAINT material_component_product
+        FOREIGN KEY (product_id)
+            REFERENCES product (id)
+            NOT DEFERRABLE
+                INITIALLY IMMEDIATE;
+
 -- Reference: component_sorting (table: component)
 ALTER TABLE component ADD CONSTRAINT component_sorting
     FOREIGN KEY (sorting_id)

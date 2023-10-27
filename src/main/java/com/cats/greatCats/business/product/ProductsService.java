@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductsService {
@@ -101,7 +102,10 @@ public class ProductsService {
             Optional<Component> componentOptional = componentRepository.findById(componentId);
             if (componentOptional.isPresent()) {
                 Component component = componentOptional.get();
-                Set<MaterialComponent> materialComponents = component.getMaterialComponents();
+                // Filter material components by product_id
+                Set<MaterialComponent> materialComponents = component.getMaterialComponents().stream()
+                        .filter(materialComponent -> materialComponent.getProduct().getId().equals(productId))
+                        .collect(Collectors.toSet());
                 List<MaterialComponent> materialComponentList = new ArrayList<>(materialComponents); // Convert Set to List
 
                 List<MaterialComponentResponse> materialComponentResponseList = materialComponentMapper.toMaterialComponentResponses(materialComponentList);
@@ -171,7 +175,7 @@ public class ProductsService {
     }
 
     private void validateUpcCodeIsAvailable(ProductDto productDto) {
-        Product existingProductByUpc = productService.findProductByUpc(productDto.getProductUpc());
+        Product existingProductByUpc = productService.findActiveProductByUpc(productDto.getProductUpc());
         if (existingProductByUpc != null) {
             Error error = Error.UPC_UNAVAILABLE;
             throw new BusinessException(error.getMessage(), error.getErrorCode());

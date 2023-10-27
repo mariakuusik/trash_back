@@ -16,6 +16,9 @@ public interface ComponentRepository extends JpaRepository<Component, Integer> {
     @Query("select c from Component c inner join c.sorting.products products where products.id = ?1 order by c.name")
     List<Component> findByProductId(Integer id);
 
+    @Query("select c from Component c inner join c.productComponents productComponents where productComponents.id = ?1")
+    Component findByProductComponentId(Integer id);
+
 
 
 

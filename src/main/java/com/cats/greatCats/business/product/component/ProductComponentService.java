@@ -1,11 +1,14 @@
 package com.cats.greatCats.business.product.component;
 
+import com.cats.greatCats.domain.product.component.Component;
+import com.cats.greatCats.domain.product.component.ComponentRepository;
 import com.cats.greatCats.domain.product.component.ProductComponent;
 import com.cats.greatCats.domain.product.component.ProductComponentRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductComponentService {
@@ -13,6 +16,9 @@ public class ProductComponentService {
 
     @Resource
     private ProductComponentRepository productComponentRepository;
+
+    @Resource
+    private ComponentRepository componentRepository;
 
 
     public List<ProductComponent> findComponentsBy(Integer productId) {
@@ -26,5 +32,18 @@ public class ProductComponentService {
 
     public ProductComponent findProductComponentBy(Integer productId, Integer componentId) {
         return productComponentRepository.findProductComponentBy(productId, componentId);
+    }
+
+    public void findProductComponentBy(Integer productComponentId) {
+        productComponentRepository.deleteById(productComponentId);
+    }
+
+    public Component findComponentIdBy(Integer productComponentId) {
+        return componentRepository.findByProductComponentId(productComponentId);
+    }
+
+
+    public Optional<ProductComponent> findProductBy(Integer productId) {
+        return productComponentRepository.findById(productId);
     }
 }

@@ -8,4 +8,5 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
     Company findActiveCompanyBy(Integer id, Boolean isActive);
 
 
+
 }

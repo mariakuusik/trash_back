@@ -1,8 +1,10 @@
 package com.cats.greatCats.domain.product.component;
 
+import com.cats.greatCats.Sorting;
 import com.cats.greatCats.business.product.dto.ProductComponentDto;
 import com.cats.greatCats.business.product.dto.ProductComponentResponse;
-import com.cats.greatCats.business.search.dto.SearchResultsByUpc;
+import com.cats.greatCats.business.recycling.search.dto.SearchComponentDto;
+import com.cats.greatCats.business.recycling.search.dto.SearchDto;
 import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.search.Bin;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-23T17:13:45+0300",
+    date = "2023-10-27T15:25:49+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @org.springframework.stereotype.Component
@@ -46,25 +48,6 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
     }
 
     @Override
-    public SearchResultsByUpc toSearchResultsByUpc(ProductComponent productComponent) {
-        if ( productComponent == null ) {
-            return null;
-        }
-
-        SearchResultsByUpc searchResultsByUpc = new SearchResultsByUpc();
-
-        searchResultsByUpc.setProductName( productComponentProductName( productComponent ) );
-        searchResultsByUpc.setComponentId( productComponentComponentId( productComponent ) );
-        searchResultsByUpc.setComponentName( productComponentComponentName( productComponent ) );
-        searchResultsByUpc.setProductBinName( productComponentProductBinName( productComponent ) );
-        searchResultsByUpc.setProductBinComments( productComponentProductBinComments( productComponent ) );
-        searchResultsByUpc.setComponentBinName( productComponentComponentBinName( productComponent ) );
-        searchResultsByUpc.setComponentBinComments( productComponentComponentBinComments( productComponent ) );
-
-        return searchResultsByUpc;
-    }
-
-    @Override
     public ProductComponent toProductComponent(ProductComponentDto productComponentDto) {
         if ( productComponentDto == null ) {
             return null;
@@ -76,6 +59,66 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
         productComponent.setProduct( productComponentDtoToProduct( productComponentDto ) );
 
         return productComponent;
+    }
+
+    @Override
+    public ProductComponentIdResponse toProductComponentIdResponse(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+
+        ProductComponentIdResponse productComponentIdResponse = new ProductComponentIdResponse();
+
+        productComponentIdResponse.setProductComponentId( productComponent.getId() );
+
+        return productComponentIdResponse;
+    }
+
+    @Override
+    public SearchDto toSearchDto(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+
+        SearchDto searchDto = new SearchDto();
+
+        searchDto.setProductId( productComponentProductId( productComponent ) );
+        searchDto.setProductName( productComponentProductName( productComponent ) );
+        searchDto.setProductBinName( productComponentProductBinName( productComponent ) );
+        searchDto.setProductBinComments( productComponentProductBinComments( productComponent ) );
+        searchDto.setProductSortingInstructions( productComponentProductSortingInstructions( productComponent ) );
+
+        return searchDto;
+    }
+
+    @Override
+    public SearchComponentDto toSearchComponentDto(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+
+        SearchComponentDto searchComponentDto = new SearchComponentDto();
+
+        searchComponentDto.setComponentName( productComponentComponentName( productComponent ) );
+        searchComponentDto.setComponentBinName( productComponentComponentBinName( productComponent ) );
+        searchComponentDto.setComponentBinComments( productComponentComponentBinComments( productComponent ) );
+        searchComponentDto.setComponentSortingInstructions( productComponentComponentSortingInstructions( productComponent ) );
+
+        return searchComponentDto;
+    }
+
+    @Override
+    public List<SearchComponentDto> toSearchComponentDtos(List<ProductComponent> productComponents) {
+        if ( productComponents == null ) {
+            return null;
+        }
+
+        List<SearchComponentDto> list = new ArrayList<SearchComponentDto>( productComponents.size() );
+        for ( ProductComponent productComponent : productComponents ) {
+            list.add( toSearchComponentDto( productComponent ) );
+        }
+
+        return list;
     }
 
     private String productComponentComponentName(ProductComponent productComponent) {
@@ -102,6 +145,45 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
             return null;
         }
         Integer id = component.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
+    }
+
+    protected Component productComponentDtoToComponent(ProductComponentDto productComponentDto) {
+        if ( productComponentDto == null ) {
+            return null;
+        }
+
+        Component component = new Component();
+
+        component.setId( productComponentDto.getComponentId() );
+
+        return component;
+    }
+
+    protected Product productComponentDtoToProduct(ProductComponentDto productComponentDto) {
+        if ( productComponentDto == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setId( productComponentDto.getProductId() );
+
+        return product;
+    }
+
+    private Integer productComponentProductId(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+        Product product = productComponent.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        Integer id = product.getId();
         if ( id == null ) {
             return null;
         }
@@ -161,6 +243,25 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
         return comments;
     }
 
+    private String productComponentProductSortingInstructions(ProductComponent productComponent) {
+        if ( productComponent == null ) {
+            return null;
+        }
+        Product product = productComponent.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        Sorting sorting = product.getSorting();
+        if ( sorting == null ) {
+            return null;
+        }
+        String instructions = sorting.getInstructions();
+        if ( instructions == null ) {
+            return null;
+        }
+        return instructions;
+    }
+
     private String productComponentComponentBinName(ProductComponent productComponent) {
         if ( productComponent == null ) {
             return null;
@@ -199,27 +300,22 @@ public class ProductComponentMapperImpl implements ProductComponentMapper {
         return comments;
     }
 
-    protected Component productComponentDtoToComponent(ProductComponentDto productComponentDto) {
-        if ( productComponentDto == null ) {
+    private String productComponentComponentSortingInstructions(ProductComponent productComponent) {
+        if ( productComponent == null ) {
             return null;
         }
-
-        Component component = new Component();
-
-        component.setId( productComponentDto.getComponentId() );
-
-        return component;
-    }
-
-    protected Product productComponentDtoToProduct(ProductComponentDto productComponentDto) {
-        if ( productComponentDto == null ) {
+        Component component = productComponent.getComponent();
+        if ( component == null ) {
             return null;
         }
-
-        Product product = new Product();
-
-        product.setId( productComponentDto.getProductId() );
-
-        return product;
+        Sorting sorting = component.getSorting();
+        if ( sorting == null ) {
+            return null;
+        }
+        String instructions = sorting.getInstructions();
+        if ( instructions == null ) {
+            return null;
+        }
+        return instructions;
     }
 }

@@ -15,5 +15,6 @@ import java.io.Serializable;
 public class MaterialComponentResponse implements Serializable {
     private String materialName;
     private String materialDescription;
+    private Integer productId;
 
 }

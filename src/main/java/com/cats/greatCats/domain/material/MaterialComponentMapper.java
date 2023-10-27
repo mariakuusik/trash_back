@@ -11,11 +11,13 @@ public interface MaterialComponentMapper {
 
     @Mapping(source = "material.name", target = "materialName")
     @Mapping(source = "material.description", target = "materialDescription")
+    @Mapping(source = "product.id", target = "productId")
     MaterialComponentResponse toMaterialComponentResponse(MaterialComponent materialComponent);
 
     List<MaterialComponentResponse> toMaterialComponentResponses(List<MaterialComponent> materialComponents);
 
     @Mapping(source = "materialId", target = "material.id")
+    @Mapping(source = "productId", target = "product.id")
     MaterialComponent toMaterialComponent(MaterialComponentRequest materialComponentRequest);
     List<MaterialComponent> toMaterialComponents(List<MaterialComponentRequest> materialComponentRequests);
 

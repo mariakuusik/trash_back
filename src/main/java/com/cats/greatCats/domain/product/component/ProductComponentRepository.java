@@ -12,8 +12,8 @@ public interface ProductComponentRepository extends JpaRepository<ProductCompone
     @Query("select p from ProductComponent p where p.product.id = ?1 and p.component.id = ?2")
     ProductComponent findProductComponentBy(Integer productId, Integer componentId);
 
-
-
+    @Override
+    void deleteById(Integer integer);
 
 
 }

@@ -24,4 +24,8 @@ public class ComponentService {
     public List<Component> findComponentsByProduct(Integer id) {
         return componentRepository.findByProductId(id);
     }
+
+    public List<Component> findComponents() {
+        return componentRepository.findAll();
+    }
 }

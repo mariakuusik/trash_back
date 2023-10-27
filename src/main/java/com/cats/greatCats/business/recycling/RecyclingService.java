@@ -1,4 +1,4 @@
-package com.cats.greatCats.business.product.recycling;
+package com.cats.greatCats.business.recycling;
 
 import com.cats.greatCats.business.product.BinService;
 import com.cats.greatCats.business.product.dto.BinDto;

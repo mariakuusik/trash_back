@@ -14,4 +14,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class MaterialComponentRequest implements Serializable {
     private Integer materialId;
+    private Integer productId;
 }

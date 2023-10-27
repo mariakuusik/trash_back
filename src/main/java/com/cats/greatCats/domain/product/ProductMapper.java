@@ -1,13 +1,7 @@
 package com.cats.greatCats.domain.product;
 
-import com.cats.greatCats.business.product.dto.ActiveProductResponse;
-import com.cats.greatCats.business.product.dto.ProductDto;
-import com.cats.greatCats.business.product.dto.ProductProfileResponse;
-import com.cats.greatCats.business.product.dto.ProductResponse;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import com.cats.greatCats.business.product.dto.*;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -43,8 +37,5 @@ public interface ProductMapper {
     @Mapping(source = "productName", target = "name")
     @Mapping(source = "companyId", target = "company.id")
     Product toProductProfile(ProductDto productDto);
-
-
-
 
 }
