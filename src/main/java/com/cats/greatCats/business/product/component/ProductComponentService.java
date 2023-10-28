@@ -8,7 +8,6 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductComponentService {
@@ -43,7 +42,9 @@ public class ProductComponentService {
     }
 
 
-    public Optional<ProductComponent> findProductBy(Integer productId) {
-        return productComponentRepository.findById(productId);
+    public List<ProductComponent> findProductBy(Integer productId) {
+        return productComponentRepository.findProductsBy(productId);
     }
+
+
 }

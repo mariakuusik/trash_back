@@ -13,7 +13,6 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SearchService {
@@ -34,13 +33,11 @@ public class SearchService {
         if (activeProduct != null) {
             Integer productId = activeProduct.getId();
 
-            Optional<ProductComponent> productComponentOptional = productComponentService.findProductBy(productId);
-            if(productComponentOptional.isPresent()){
-                ProductComponent productComponent = productComponentOptional.get();
+            List<ProductComponent> productComponents = productComponentService.findProductBy(productId);
+            for(ProductComponent productComponent : productComponents){
                 searchDto = productComponentMapper.toSearchDto(productComponent);
                 findProductComponentsAndComponentRecycling(activeProduct, searchDto);
             }
-
         }
         return searchDto;
     }
