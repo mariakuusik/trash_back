@@ -1,4 +1,4 @@
-package com.cats.greatCats.business.product.component;
+package com.cats.greatCats.business.product.component.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

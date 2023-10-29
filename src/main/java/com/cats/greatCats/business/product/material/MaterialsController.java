@@ -1,6 +1,5 @@
 package com.cats.greatCats.business.product.material;
 
-import com.cats.greatCats.business.product.dto.MaterialResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package com.cats.greatCats.domain.product.material;
 
-import com.cats.greatCats.business.product.dto.MaterialResponse;
+import com.cats.greatCats.business.product.material.MaterialResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

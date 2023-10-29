@@ -1,9 +1,12 @@
 package com.cats.greatCats.domain.search;
 
-import com.cats.greatCats.business.product.dto.BinDto;
+import com.cats.greatCats.business.recycling.dto.BinDto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+
+import com.cats.greatCats.domain.recycling.Bin;
+import com.cats.greatCats.domain.recycling.BinMapper;
 import org.springframework.stereotype.Component;
 
 @Generated(

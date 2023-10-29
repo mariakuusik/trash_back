@@ -1,4 +1,4 @@
-package com.cats.greatCats;
+package com.cats.greatCats.domain.recycling;
 
 import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.product.component.Component;

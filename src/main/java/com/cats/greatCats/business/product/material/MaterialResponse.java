@@ -1,4 +1,4 @@
-package com.cats.greatCats.business.product.dto;
+package com.cats.greatCats.business.product.material;
 
 import com.cats.greatCats.domain.product.material.Material;
 import jakarta.validation.constraints.NotNull;

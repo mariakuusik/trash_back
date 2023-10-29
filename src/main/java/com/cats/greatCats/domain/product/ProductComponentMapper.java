@@ -1,9 +1,10 @@
-package com.cats.greatCats.domain.product.component;
+package com.cats.greatCats.domain.product;
 
 import com.cats.greatCats.business.product.dto.ProductComponentDto;
+import com.cats.greatCats.business.product.dto.ProductComponentIdResponse;
 import com.cats.greatCats.business.product.dto.ProductComponentResponse;
-import com.cats.greatCats.business.recycling.search.dto.SearchComponentDto;
-import com.cats.greatCats.business.recycling.search.dto.SearchDto;
+import com.cats.greatCats.business.recycling.dto.SearchComponentDto;
+import com.cats.greatCats.business.recycling.dto.SearchDto;
 import org.mapstruct.*;
 
 import java.util.List;

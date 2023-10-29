@@ -1,14 +1,12 @@
 package com.cats.greatCats.business.product.component;
 
+import com.cats.greatCats.business.product.component.dto.ComponentResponse;
 import com.cats.greatCats.business.product.dto.ProductComponentDto;
-import com.cats.greatCats.domain.material.MaterialComponent;
-import com.cats.greatCats.domain.material.MaterialComponentMapper;
-import com.cats.greatCats.domain.material.MaterialComponentRequest;
-import com.cats.greatCats.domain.material.MaterialService;
-import com.cats.greatCats.domain.product.Product;
-import com.cats.greatCats.domain.product.ProductService;
+import com.cats.greatCats.business.product.dto.ProductComponentIdResponse;
+import com.cats.greatCats.domain.product.*;
+import com.cats.greatCats.domain.product.material.*;
+import com.cats.greatCats.business.product.material.dto.MaterialComponentRequest;
 import com.cats.greatCats.domain.product.component.*;
-import com.cats.greatCats.domain.product.material.Material;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

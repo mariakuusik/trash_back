@@ -1,9 +1,9 @@
-package com.cats.greatCats.business.product.component;
+package com.cats.greatCats.domain.product;
 
+import com.cats.greatCats.domain.product.ProductComponent;
+import com.cats.greatCats.domain.product.ProductComponentRepository;
 import com.cats.greatCats.domain.product.component.Component;
 import com.cats.greatCats.domain.product.component.ComponentRepository;
-import com.cats.greatCats.domain.product.component.ProductComponent;
-import com.cats.greatCats.domain.product.component.ProductComponentRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

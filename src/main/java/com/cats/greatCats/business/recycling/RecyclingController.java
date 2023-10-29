@@ -1,8 +1,7 @@
 package com.cats.greatCats.business.recycling;
 
-import com.cats.greatCats.business.recycling.search.SearchService;
-import com.cats.greatCats.business.recycling.search.dto.SearchDto;
-import com.cats.greatCats.domain.search.Bin;
+import com.cats.greatCats.business.recycling.dto.SearchDto;
+import com.cats.greatCats.domain.recycling.Bin;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;

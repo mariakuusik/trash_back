@@ -1,9 +1,9 @@
 package com.cats.greatCats.business.recycling;
 
 import com.cats.greatCats.business.product.BinService;
-import com.cats.greatCats.business.product.dto.BinDto;
-import com.cats.greatCats.domain.search.Bin;
-import com.cats.greatCats.domain.search.BinMapper;
+import com.cats.greatCats.business.recycling.dto.BinDto;
+import com.cats.greatCats.domain.recycling.Bin;
+import com.cats.greatCats.domain.recycling.BinMapper;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

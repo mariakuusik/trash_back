@@ -1,4 +1,4 @@
-package com.cats.greatCats.domain.material;
+package com.cats.greatCats.domain.product.material;
 
 import com.cats.greatCats.domain.product.component.Component;
 import org.springframework.data.jpa.repository.JpaRepository;

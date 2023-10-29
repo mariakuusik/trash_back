@@ -1,6 +1,6 @@
 package com.cats.greatCats.domain.product.component;
 
-import com.cats.greatCats.business.product.component.ComponentResponse;
+import com.cats.greatCats.business.product.component.dto.ComponentResponse;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;

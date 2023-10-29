@@ -1,6 +1,6 @@
-package com.cats.greatCats.business.recycling.search.dto;
+package com.cats.greatCats.business.recycling.dto;
 
-import com.cats.greatCats.domain.product.component.ProductComponent;
+import com.cats.greatCats.domain.product.ProductComponent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

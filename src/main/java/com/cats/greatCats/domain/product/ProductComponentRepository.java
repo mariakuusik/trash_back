@@ -1,4 +1,4 @@
-package com.cats.greatCats.domain.product.component;
+package com.cats.greatCats.domain.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

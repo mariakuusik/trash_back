@@ -1,11 +1,15 @@
 package com.cats.greatCats.domain.material;
 
-import com.cats.greatCats.business.product.dto.MaterialComponentResponse;
+import com.cats.greatCats.business.product.material.dto.MaterialComponentRequest;
+import com.cats.greatCats.business.product.material.dto.MaterialComponentResponse;
 import com.cats.greatCats.domain.product.Product;
 import com.cats.greatCats.domain.product.material.Material;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+
+import com.cats.greatCats.domain.product.material.MaterialComponent;
+import com.cats.greatCats.domain.product.material.MaterialComponentMapper;
 import org.springframework.stereotype.Component;
 
 @Generated(

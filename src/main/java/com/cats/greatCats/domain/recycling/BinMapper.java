@@ -1,6 +1,6 @@
-package com.cats.greatCats.domain.search;
+package com.cats.greatCats.domain.recycling;
 
-import com.cats.greatCats.business.product.dto.BinDto;
+import com.cats.greatCats.business.recycling.dto.BinDto;
 import org.mapstruct.*;
 
 import java.util.List;

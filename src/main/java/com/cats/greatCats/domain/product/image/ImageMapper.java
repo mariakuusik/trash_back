@@ -1,6 +1,6 @@
 package com.cats.greatCats.domain.product.image;
 
-import com.cats.greatCats.business.product.dto.ImageDto;
+import com.cats.greatCats.business.product.image.dto.ImageDto;
 import com.cats.greatCats.util.ImageConverter;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

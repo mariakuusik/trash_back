@@ -1,7 +1,6 @@
 package com.cats.greatCats.business.product.material;
 
-import com.cats.greatCats.business.product.dto.MaterialResponse;
-import com.cats.greatCats.domain.material.MaterialService;
+import com.cats.greatCats.domain.product.material.MaterialService;
 import com.cats.greatCats.domain.product.material.Material;
 import com.cats.greatCats.domain.product.material.MaterialMapper;
 import jakarta.annotation.Resource;

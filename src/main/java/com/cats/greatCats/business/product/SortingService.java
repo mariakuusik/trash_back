@@ -1,7 +1,7 @@
 package com.cats.greatCats.business.product;
 
-import com.cats.greatCats.Sorting;
-import com.cats.greatCats.SortingRepository;
+import com.cats.greatCats.domain.recycling.Sorting;
+import com.cats.greatCats.domain.recycling.SortingRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

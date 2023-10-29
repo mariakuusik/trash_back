@@ -1,4 +1,4 @@
-package com.cats.greatCats.domain.search;
+package com.cats.greatCats.domain.recycling;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;

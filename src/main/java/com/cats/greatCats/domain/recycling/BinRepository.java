@@ -1,4 +1,4 @@
-package com.cats.greatCats.domain.search;
+package com.cats.greatCats.domain.recycling;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

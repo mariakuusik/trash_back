@@ -1,7 +1,8 @@
 package com.cats.greatCats.business.product.component;
 
+import com.cats.greatCats.business.product.component.dto.ComponentResponse;
 import com.cats.greatCats.business.product.dto.ProductComponentDto;
-import com.cats.greatCats.domain.product.component.ProductComponentIdResponse;
+import com.cats.greatCats.business.product.dto.ProductComponentIdResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;

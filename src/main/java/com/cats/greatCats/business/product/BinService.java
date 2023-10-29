@@ -1,7 +1,7 @@
 package com.cats.greatCats.business.product;
 
-import com.cats.greatCats.domain.search.Bin;
-import com.cats.greatCats.domain.search.BinRepository;
+import com.cats.greatCats.domain.recycling.Bin;
+import com.cats.greatCats.domain.recycling.BinRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

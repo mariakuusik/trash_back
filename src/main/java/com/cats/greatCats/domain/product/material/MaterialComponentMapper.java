@@ -1,6 +1,7 @@
-package com.cats.greatCats.domain.material;
+package com.cats.greatCats.domain.product.material;
 
-import com.cats.greatCats.business.product.dto.MaterialComponentResponse;
+import com.cats.greatCats.business.product.material.dto.MaterialComponentRequest;
+import com.cats.greatCats.business.product.material.dto.MaterialComponentResponse;
 import org.mapstruct.*;
 
 import java.util.List;

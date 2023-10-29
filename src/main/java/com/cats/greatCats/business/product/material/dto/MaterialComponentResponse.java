@@ -1,5 +1,6 @@
-package com.cats.greatCats.business.product.dto;
+package com.cats.greatCats.business.product.material.dto;
 
+import com.cats.greatCats.domain.product.material.MaterialComponent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * DTO for {@link com.cats.greatCats.domain.material.MaterialComponent}
+ * DTO for {@link MaterialComponent}
  */
 @Data
 @AllArgsConstructor

@@ -1,10 +1,9 @@
 package com.cats.greatCats.domain.product;
 
-import com.cats.greatCats.Sorting;
+import com.cats.greatCats.domain.recycling.Sorting;
 import com.cats.greatCats.domain.company.Company;
-import com.cats.greatCats.domain.product.component.ProductComponent;
 import com.cats.greatCats.domain.product.image.Image;
-import com.cats.greatCats.domain.search.Bin;
+import com.cats.greatCats.domain.recycling.Bin;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

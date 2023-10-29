@@ -2,7 +2,7 @@ package com.cats.greatCats.business.product.image;
 
 
 import com.cats.greatCats.business.product.ProductsService;
-import com.cats.greatCats.business.product.dto.ImageDto;
+import com.cats.greatCats.business.product.image.dto.ImageDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;

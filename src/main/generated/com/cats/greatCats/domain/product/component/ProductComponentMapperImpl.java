@@ -1,12 +1,15 @@
 package com.cats.greatCats.domain.product.component;
 
-import com.cats.greatCats.Sorting;
+import com.cats.greatCats.domain.recycling.Sorting;
 import com.cats.greatCats.business.product.dto.ProductComponentDto;
+import com.cats.greatCats.business.product.dto.ProductComponentIdResponse;
 import com.cats.greatCats.business.product.dto.ProductComponentResponse;
-import com.cats.greatCats.business.recycling.search.dto.SearchComponentDto;
-import com.cats.greatCats.business.recycling.search.dto.SearchDto;
+import com.cats.greatCats.business.recycling.dto.SearchComponentDto;
+import com.cats.greatCats.business.recycling.dto.SearchDto;
 import com.cats.greatCats.domain.product.Product;
-import com.cats.greatCats.domain.search.Bin;
+import com.cats.greatCats.domain.product.ProductComponent;
+import com.cats.greatCats.domain.product.ProductComponentMapper;
+import com.cats.greatCats.domain.recycling.Bin;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;

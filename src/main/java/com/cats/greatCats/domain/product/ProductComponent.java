@@ -1,6 +1,7 @@
-package com.cats.greatCats.domain.product.component;
+package com.cats.greatCats.domain.product;
 
 import com.cats.greatCats.domain.product.Product;
+import com.cats.greatCats.domain.product.component.Component;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
