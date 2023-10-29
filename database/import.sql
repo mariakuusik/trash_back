@@ -30,14 +30,14 @@ VALUES ('PET', 'Polyethylene Terephthalate'),
 
 -- Insert data into 'bin' Table
 INSERT INTO bin (id, name, comments)
-VALUES (DEFAULT, 'Plast- ja metallpakend, joogikartong',
-        'Loputa vajadusel, et ei määriks teisi pakendeid. Jäta korgid-kaaned peale'),
-       (DEFAULT, 'Paber ja papp',
-        'Voldi suuremad pakendid kokku või rebi tükkideks. Veendu, et materjal on puhas ja kuiv.'),
-       (DEFAULT, 'Klaaspakend',
-        'Loputa vajadusel, et ei määriks teisi pakendeid. Eemalda korgid või kaaned, sildid võivad jääda'),
-       (DEFAULT, 'Biojäätmed', 'Pane konteinerisse lahtiselt, paberkotis või komposteeruva kotiga'),
-       (DEFAULT, 'Olmejäätmed', 'test');
+VALUES (DEFAULT, 'Plastic and metal packaging, tetrapak',
+        'Rinse lightly. Do not remove cap'),
+       (DEFAULT, 'Paper and cardboard',
+        'Fold bigger items. Material should be dry and clean'),
+       (DEFAULT, 'Glass packaging',
+        'Rinse lightly. Remove metal parts, labels can stay'),
+       (DEFAULT, 'Biowaste', 'Add to the container loose or with biodegradable bag'),
+       (DEFAULT, 'Mixed waste', 'Only materials that cannot be recycled');
 
 -- Insert data into 'sorting' Table
 INSERT INTO sorting (instructions)
@@ -56,22 +56,29 @@ VALUES (1, 'Milkman OÜ', 'ABC123', true);
 
 -- Insert data into 'product' Table
 INSERT INTO product (company_id, image_id, sorting_id, bin_id, name, upc, is_active)
-VALUES (1, 1, 1, NULL, 'Milk 2.5%', '123456789012', true),
-       (1, 1, 1, NULL, 'Milk 4,5%', '123456789013', true),
-       (1, 2, NULL, NULL, 'Strawberry Yogurt', '123456789014', true),
-       (1, NULL, NULL, NULL, 'Straciatella Yogurt', '123456789015', true),
-       (1, NULL, NULL, NULL, 'Blueberry Icecream', '123456789016', true);
+VALUES (1, 1, 1, 1, 'Milk 2.5%', '123456789012', true),
+       (1, 1, 1, NULL, 'Milk 4,5%', '123456789013', false),
+       (1, 2, NULL, NULL, 'Strawberry Yogurt', '123456789014', true);
 
 -- Insert data into 'component' Table
 INSERT INTO component (sorting_id, name)
 VALUES (NULL, 'Tetrapak'),
        (NULL, 'Lid'),
-       (NULL, 'Lid'),
        (NULL, 'Wrapper'),
        (NULL, 'Product Container'),
-       (2, 'Container Protective Top');
+       (NULL, 'Container Protective Top');
 
 -- Insert data into 'product_component' Table
 INSERT INTO product_component (product_id, component_id)
 VALUES (1, 1),
-       (1, 2);
+       (1, 2),
+       (3, 5),
+       (3, 4);
+
+-- Insert data into 'material_component' Table
+INSERT INTO material_component (material_id, component_id, product_id)
+VALUES (16, 5, 3),
+       (5, 4, 3),
+       (15, 1, 1),
+       (5, 2, 1);
+
