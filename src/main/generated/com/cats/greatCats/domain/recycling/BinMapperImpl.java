@@ -1,17 +1,14 @@
-package com.cats.greatCats.domain.search;
+package com.cats.greatCats.domain.recycling;
 
 import com.cats.greatCats.business.recycling.dto.BinDto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
-
-import com.cats.greatCats.domain.recycling.Bin;
-import com.cats.greatCats.domain.recycling.BinMapper;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-24T16:25:16+0300",
+    date = "2023-10-29T12:06:20+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component

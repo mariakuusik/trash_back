@@ -1,20 +1,16 @@
-package com.cats.greatCats.domain.material;
+package com.cats.greatCats.domain.product.material;
 
 import com.cats.greatCats.business.product.material.dto.MaterialComponentRequest;
 import com.cats.greatCats.business.product.material.dto.MaterialComponentResponse;
 import com.cats.greatCats.domain.product.Product;
-import com.cats.greatCats.domain.product.material.Material;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
-
-import com.cats.greatCats.domain.product.material.MaterialComponent;
-import com.cats.greatCats.domain.product.material.MaterialComponentMapper;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-26T12:28:58+0300",
+    date = "2023-10-29T12:06:20+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @Component

@@ -1,22 +1,20 @@
-package com.cats.greatCats.domain.product.component;
+package com.cats.greatCats.domain.product;
 
-import com.cats.greatCats.domain.recycling.Sorting;
 import com.cats.greatCats.business.product.dto.ProductComponentDto;
 import com.cats.greatCats.business.product.dto.ProductComponentIdResponse;
 import com.cats.greatCats.business.product.dto.ProductComponentResponse;
 import com.cats.greatCats.business.recycling.dto.SearchComponentDto;
 import com.cats.greatCats.business.recycling.dto.SearchDto;
-import com.cats.greatCats.domain.product.Product;
-import com.cats.greatCats.domain.product.ProductComponent;
-import com.cats.greatCats.domain.product.ProductComponentMapper;
+import com.cats.greatCats.domain.product.component.Component;
 import com.cats.greatCats.domain.recycling.Bin;
+import com.cats.greatCats.domain.recycling.Sorting;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-27T15:25:49+0300",
+    date = "2023-10-29T12:06:20+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.8 (Amazon.com Inc.)"
 )
 @org.springframework.stereotype.Component
